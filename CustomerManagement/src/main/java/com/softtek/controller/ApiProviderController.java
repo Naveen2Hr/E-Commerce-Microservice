@@ -2,6 +2,7 @@ package com.softtek.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ import com.softtek.service.ICustomerService;
  *
  */
 @RestController
-@RequestMapping("/providerApi")
+@RequestMapping("/providerApi/customer")
 public class ApiProviderController {
 
 	private ICustomerService service;
@@ -25,6 +26,7 @@ public class ApiProviderController {
 	 * 
 	 * @return Customer entity
 	 */
+	@GetMapping("/details")
 	public ResponseEntity<?> customerDetails(@PathVariable String empId) {
 		try {
 			Customer customerRecord = service.getCustomerRecord(empId);
