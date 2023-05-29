@@ -81,6 +81,7 @@ public class ProductServiceImpl implements ProductServiceInterface {
 			Product product = productRepo.findById(id).get();
 			productList.add(product);
 		}
+		System.out.println(productList);
 		return productList;
 	}
 

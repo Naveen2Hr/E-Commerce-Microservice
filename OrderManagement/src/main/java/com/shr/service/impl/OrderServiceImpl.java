@@ -1,24 +1,46 @@
 package com.shr.service.impl;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.shr.client.ICustomerServiceRestConsumer;
+import com.shr.client.IProductServiceRestConsumer;
+import com.shr.entity.Customer;
 import com.shr.entity.Order;
-import com.shr.repository.CustomerRepository;
+import com.shr.entity.Product;
 import com.shr.repository.OrderRepository;
-import com.shr.repository.ProductRepository;
 import com.shr.service.OrderServiceInterface;
 
 public class OrderServiceImpl implements OrderServiceInterface {
 
 	@Autowired
 	private OrderRepository orderRepo;
+
 	@Autowired
-	private CustomerRepository custRepo;
+	private ICustomerServiceRestConsumer custClient;
+
 	@Autowired
-	private ProductRepository productRepo;
+	private IProductServiceRestConsumer prodClient;
 
 	@Override
-	public String insertOrder(Order order) {
+	public String insertOrder(String custId, List<Integer> productIds) {
+		Order order = new Order();
+
+		Customer cust = (Customer) custClient.getCustomerDetails(custId).getBody();
+		List<Product> listOfProduct = prodClient.getListOfProduct(productIds).getBody();
+		Double totalPrice = 0.0;
+		for (Product product : listOfProduct) {
+			totalPrice += product.getProductPrice();
+		}
+
+		order.setCustomer(cust);
+		order.setProducts(listOfProduct);
+		order.setDeliveryStatus(false);
+		order.setOrderDate("20/05/2023");
+		order.setTotalPrice(totalPrice);
+
 		Order save = orderRepo.save(order);
 		return save != null ? "Order Has been placed with order-ID :: " + save.getOrderId()
 				: "Something went wrong try again";
@@ -38,9 +60,9 @@ public class OrderServiceImpl implements OrderServiceInterface {
 	}
 
 	@Override
-	public String updateOrderDeliveryStatus(Integer orderId, String status) {
+	public String updateOrderDeliveryStatus(Integer orderId, Boolean status) {
 		Order order = orderRepo.findById(orderId).get();
-		if (status.equalsIgnoreCase("Delivered") || status.equalsIgnoreCase("Pending")) {
+		if (status == true) {
 			order.setDeliveryStatus(status);
 			return "Order status is updated for order-ID :: '" + order.getOrderId() + "' to '" + status + "'.";
 		} else {
