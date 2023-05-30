@@ -18,18 +18,18 @@ public class PaymentServiceImpl implements IPaymentService {
 	// Methods to handle payment operations
 	public String savePaymentDetails(Payment payment) {
 		paymentRepo.save(payment);
-		return "Saved Succesfully with id : "+payment.getPid() ;
+		return "Saved Succesfully with id : " + payment.getPaymentId();
 	}
-	
+
 	@Override
 	public Payment getPaymentDetailsByOrderId(long orderId) {
 		return paymentRepo.findByOrderId(orderId);
 	}
-	
+
 	@Override
 	public String updatePaymentStatus(Payment payment) {
 		return "Payment status updated Successfully";
-		//return payment.getPMode();
+		// return payment.getPMode();
 	}
 
 	@Override
@@ -44,14 +44,6 @@ public class PaymentServiceImpl implements IPaymentService {
 		return null;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-
 //	public String getOrderDetails1(Long oid, Double totalAmount) {
 //		Order order = orderRepo.getTotalPrice(oid);
 //		if (order != null) {
@@ -64,8 +56,6 @@ public class PaymentServiceImpl implements IPaymentService {
 //		}
 //		return null;
 //	}
-
-	
 
 }
 

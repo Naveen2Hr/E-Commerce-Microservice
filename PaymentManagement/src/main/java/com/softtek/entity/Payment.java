@@ -18,19 +18,19 @@ public class Payment {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pid;
+    private Long paymentId;
     
     @Column(name = "PAYMENT_MODE")
-    private String pMode;
+    private String paymentMode;
     
     @Column(name = "PAYMENT_STATUS",columnDefinition = "boolean default false")
-    private Boolean pStatus;
+    private Boolean paymentStatus;
     
     @Column(name="PAYMENT_DATE_TIME")
     private LocalDateTime dateAndTime;
     
     @Column(name = "ORDER_ID")
-    private Long oid;
+    private Long orderId;
     
     @Column(name = "AMOUNT")
     private Double totalAmount;

@@ -1,8 +1,15 @@
 package com.softtek.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 
-@FeignClient("OrderManagement")
+import com.softtek.model.Order;
+
+@FeignClient("Order-Service")
 public interface OrderServiceClient {
+
+	@GetMapping("/providerApi/order/orderDetails")
+	public abstract ResponseEntity<Order> getOrderDetails();
 
 }
