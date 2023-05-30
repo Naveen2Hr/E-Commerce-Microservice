@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.shr.client.ICustomerServiceRestConsumer;
 import com.shr.client.IProductServiceRestConsumer;
@@ -13,6 +14,7 @@ import com.shr.entity.Product;
 import com.shr.repository.OrderRepository;
 import com.shr.service.OrderServiceInterface;
 
+@Service
 public class OrderServiceImpl implements OrderServiceInterface {
 
 	@Autowired
