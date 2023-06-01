@@ -23,7 +23,7 @@ public class ProviderController {
 	private ProductServiceInterface service;
 
 	@GetMapping("/details")
-	public ResponseEntity<?> productDetails() {
+	public ResponseEntity<?> productDetails(List<Integer> ids) {
 		try {
 			return new ResponseEntity<List<OrderedProduct>>(service.getOrderedProductRecords(), HttpStatus.OK);
 		} catch (Exception e) {
@@ -49,7 +49,7 @@ public class ProviderController {
 		}
 	}
 
-	@GetMapping("/list_of_produts")
+	@GetMapping("/list_of_products")
 	public ResponseEntity<List<Product>> getListOfProduct(@RequestParam List<Integer> productIds) {
 		try {
 			List<Product> productRetrival = service.productRetrival(productIds);

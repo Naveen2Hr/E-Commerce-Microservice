@@ -5,9 +5,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.shr.entity.Customer;
+
 @FeignClient("Customer-Service")
 public interface ICustomerServiceRestConsumer {
 
 	@GetMapping("/providerApi/customer/details")
-	public ResponseEntity<?> getCustomerDetails(@RequestParam(name = "custId") String custId);
+	public ResponseEntity<Customer> getCustomerDetails(@RequestParam(name = "custId") String custId);
 }

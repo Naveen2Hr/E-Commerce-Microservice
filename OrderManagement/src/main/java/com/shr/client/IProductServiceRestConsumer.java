@@ -12,6 +12,6 @@ import com.shr.entity.Product;
 @FeignClient("Product-Service")
 public interface IProductServiceRestConsumer {
 
-	@GetMapping("/providerApi/product/list_of_produts")
+	@GetMapping("providerApi/product/list_of_products")
 	public ResponseEntity<List<Product>> getListOfProduct(@RequestParam List<Integer> productIds);
 }

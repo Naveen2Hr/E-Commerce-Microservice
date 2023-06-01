@@ -1,5 +1,7 @@
 package com.shr.service.impl;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,9 @@ import com.shr.client.IProductServiceRestConsumer;
 import com.shr.entity.Customer;
 import com.shr.entity.Order;
 import com.shr.entity.Product;
+import com.shr.repository.CustomerRepository;
 import com.shr.repository.OrderRepository;
+import com.shr.repository.ProductRepository;
 import com.shr.service.OrderServiceInterface;
 
 @Service
@@ -25,21 +29,30 @@ public class OrderServiceImpl implements OrderServiceInterface {
 	@Autowired
 	private IProductServiceRestConsumer prodClient;
 
+	@Autowired
+	private ProductRepository productRepo;
+
+	@Autowired
+	private CustomerRepository custRepo;
+
 	@Override
 	public String insertOrder(String custId, List<Integer> productIds) {
 		Order order = new Order();
 
-		Customer cust = (Customer) custClient.getCustomerDetails(custId).getBody();
-		List<Product> listOfProduct = prodClient.getListOfProduct(productIds).getBody();
 		Double totalPrice = 0.0;
-		for (Product product : listOfProduct) {
+		List<Product> prodList = new ArrayList<Product>();
+
+		for (Integer i : productIds) {
+			prodList.add(productRepo.findById(i).get());
+		}
+
+		for (Product product : prodList) {
 			totalPrice += product.getProductPrice();
 		}
 
-		order.setCustomer(cust);
-		order.setProducts(listOfProduct);
+		order.setCustomer(custRepo.findById(custId).get());
 		order.setDeliveryStatus(false);
-		order.setOrderDate("20/05/2023");
+		order.setOrderDate(new Date());
 		order.setTotalPrice(totalPrice);
 
 		Order save = orderRepo.save(order);
@@ -73,11 +86,21 @@ public class OrderServiceImpl implements OrderServiceInterface {
 
 	@Override
 	public Order orderProvider() {
-		List<Order> orderList = (List<Order>)orderRepo.findAll();
-		Order order = orderList.get(orderList.size()-1);
+		List<Order> orderList = (List<Order>) orderRepo.findAll();
+		Order order = orderList.get(orderList.size() - 1);
 		return order;
 	}
-	
-	
+
+	@Override
+	public String insertProductRecords(List<Product> productList) {
+		List<Product> saveAll = productRepo.saveAll(productList);
+		return saveAll.size() >= 1 ? "Product List retrived" : "Check the list of Ids";
+	}
+
+	@Override
+	public String insertCustomerRecord(Customer customer) {
+		Customer save = custRepo.save(customer);
+		return save != null ? save.getCustomerId() + " :: Customer Record is saved." : "Issue With Record Try Again.";
+	}
 
 }

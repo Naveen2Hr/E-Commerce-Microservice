@@ -99,7 +99,7 @@ public class ProductController {
 	@PatchMapping("/update/product_status")
 	public ResponseEntity<?> updateProductStatusRecord(@RequestParam Integer productId, @RequestParam String status) {
 		try {
-			String message = service.productStatusUpadte(productId, status);
+			String message = service.productStatusUpdate(productId, status);
 			return new ResponseEntity<String>(message, HttpStatus.OK);
 		} catch (Exception e) {
 			String expMessage = "Something went wrong please try again";

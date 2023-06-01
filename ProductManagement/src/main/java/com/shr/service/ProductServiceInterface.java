@@ -15,7 +15,7 @@ public interface ProductServiceInterface {
 
 	public String deleteProduct(Integer productId);
 
-	public String productStatusUpadte(Integer productId, String status);
+	public String productStatusUpdate(Integer productId, String status);
 
 	public String productCountUpdate(Integer productId, Integer count);
 	

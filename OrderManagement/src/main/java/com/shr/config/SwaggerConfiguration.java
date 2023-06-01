@@ -34,7 +34,7 @@ public class SwaggerConfiguration {
 	private ApiInfo getApiInfo() {
 		Contact contact = new Contact("POC_E-Commerce_Product", "https:://www.eshopping.com/product",
 				"hrsagar1712@gmail.com");
-		return new ApiInfo("Product API", "Gives Access to Product Management", "3.4.RELEASE",
+		return new ApiInfo("Order API", "Gives Access to Product Management", "3.4.RELEASE",
 				"http://www.eshopping.com/license", contact, "GNU Public", "http://apache.org/license/gnu",
 				Collections.emptyList());
 	}

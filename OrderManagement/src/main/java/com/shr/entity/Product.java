@@ -1,25 +1,26 @@
 package com.shr.entity;
 
-import javax.persistence.Transient;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
+@Entity
+@Table(name = "Product_Order_Table")
 public class Product {
 
+	@Id
 	private Integer productId;
 
+	@Column
 	private String productName;
 
+	@Column
 	private Double productPrice;
-
-	@JsonIgnore
-//	@ManyToOne(targetEntity = Order.class, cascade = CascadeType.ALL)
-//	@JoinColumn(name = "orderId", referencedColumnName = "orderId")
-	@Transient
-	private Order order;
+	
 
 	@Override
 	public String toString() {

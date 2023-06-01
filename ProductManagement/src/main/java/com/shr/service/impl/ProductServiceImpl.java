@@ -63,7 +63,7 @@ public class ProductServiceImpl implements ProductServiceInterface {
 	}
 
 	@Override
-	public String productStatusUpadte(Integer productId, String status) {
+	public String productStatusUpdate(Integer productId, String status) {
 		productRepo.findById(productId).get().setProductStatus(status);
 		return "Product Status of the Product with Product-ID :: '" + productId + "' to '" + status + "'.";
 	}
