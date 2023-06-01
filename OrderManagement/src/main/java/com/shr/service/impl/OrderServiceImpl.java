@@ -1,6 +1,5 @@
 package com.shr.service.impl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,5 +70,14 @@ public class OrderServiceImpl implements OrderServiceInterface {
 			return "Please select a correct status update option to change";
 		}
 	}
+
+	@Override
+	public Order orderProvider() {
+		List<Order> orderList = (List<Order>)orderRepo.findAll();
+		Order order = orderList.get(orderList.size()-1);
+		return order;
+	}
+	
+	
 
 }

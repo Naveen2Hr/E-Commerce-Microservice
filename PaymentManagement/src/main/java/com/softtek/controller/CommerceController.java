@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.softtek.client.OrderServiceClient;
+import com.softtek.client.OrderClient;
 import com.softtek.entity.Payment;
 import com.softtek.model.Order;
 import com.softtek.service.IPaymentService;
@@ -28,7 +28,7 @@ public class CommerceController {
 	private PaymentServiceImpl service;
 
 	@Autowired
-	private OrderServiceClient client;
+	private OrderClient client;
 
 	@PostMapping("/save")
 	public void createPayment(@RequestBody Payment payment) {
@@ -51,7 +51,7 @@ public class CommerceController {
 	public ResponseEntity<String> generatePayment() {
 		try {
 			Payment payment = new Payment();
-			Order order = client.getOrderDetails().getBody();
+			Order order = client.getOrderRecord().getBody();
 			payment.setOrderId(100L);
 			payment.setDateAndTime(LocalDateTime.now());
 			payment.setOrderId(order.getOrderId());

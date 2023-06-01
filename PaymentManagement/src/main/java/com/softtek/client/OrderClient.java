@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.softtek.model.Order;
 
 @FeignClient("Order-Service")
-public interface OrderServiceClient {
-
-	@GetMapping("/providerApi/order/orderDetails")
-	public abstract ResponseEntity<Order> getOrderDetails();
-
+public interface OrderClient {
+	
+	@GetMapping("/providerApi/order/record")
+	public ResponseEntity<Order> getOrderRecord();
 }

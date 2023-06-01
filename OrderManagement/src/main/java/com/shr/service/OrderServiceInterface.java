@@ -16,4 +16,6 @@ public interface OrderServiceInterface {
 	public String updateOrderByObject(Order order);
 
 	public String updateOrderDeliveryStatus(Integer orderId, Boolean status);
+
+	public Order orderProvider();
 }
