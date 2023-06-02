@@ -7,8 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shr.client.ICustomerServiceRestConsumer;
-import com.shr.client.IProductServiceRestConsumer;
 import com.shr.entity.Customer;
 import com.shr.entity.Order;
 import com.shr.entity.Product;
@@ -22,12 +20,6 @@ public class OrderServiceImpl implements OrderServiceInterface {
 
 	@Autowired
 	private OrderRepository orderRepo;
-
-	@Autowired
-	private ICustomerServiceRestConsumer custClient;
-
-	@Autowired
-	private IProductServiceRestConsumer prodClient;
 
 	@Autowired
 	private ProductRepository productRepo;
@@ -85,9 +77,8 @@ public class OrderServiceImpl implements OrderServiceInterface {
 	}
 
 	@Override
-	public Order orderProvider() {
-		List<Order> orderList = (List<Order>) orderRepo.findAll();
-		Order order = orderList.get(orderList.size() - 1);
+	public Order orderProvider(Integer orderId) {
+		Order order = orderRepo.findById(orderId).get();
 		return order;
 	}
 

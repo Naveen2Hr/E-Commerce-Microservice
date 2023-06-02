@@ -10,17 +10,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.softtek.client.OrderClient;
 import com.softtek.entity.Payment;
 import com.softtek.model.Order;
 import com.softtek.service.IPaymentService;
-import com.softtek.service.PaymentServiceImpl;
+import com.softtek.service.impl.PaymentServiceImpl;
 
 @RestController
 @RequestMapping("/payment")
-public class CommerceController {
+public class PaymentController {
 	@Autowired
 	private IPaymentService paymentService;
 
@@ -48,19 +49,15 @@ public class CommerceController {
 	}
 
 	@GetMapping("/getPayment")
-	public ResponseEntity<String> generatePayment() {
+	public ResponseEntity<String> generatePayment(@RequestParam(defaultValue = "1") Integer orderId) {
 		try {
-			Payment payment = new Payment();
-			Order order = client.getOrderRecord().getBody();
-			payment.setOrderId(100L);
-			payment.setDateAndTime(LocalDateTime.now());
-			payment.setOrderId(order.getOrderId());
-			payment.setPaymentStatus(false);
-			payment.setTotalAmount(order.getTotalPrice());
-			payment.setPaymentMode("COD");
+			Order order = client.getOrderRecord(orderId).getBody();
+			System.out.println(order);
+			Payment payment = service.generatePayment(order);
 			String message = service.savePaymentDetails(payment);
 			return new ResponseEntity<String>(message, HttpStatus.OK);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<String>("Something gone Wrong", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

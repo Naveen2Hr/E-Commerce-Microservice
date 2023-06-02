@@ -8,9 +8,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients
-public class CommerceRelatedApplication {
+public class PaymentManagementApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CommerceRelatedApplication.class, args);
+		SpringApplication.run(PaymentManagementApplication.class, args);
 	}
 }

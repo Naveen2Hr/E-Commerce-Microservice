@@ -18,6 +18,8 @@ public interface IPaymentService {
 	
 	//to update OrderStatus column
 	public String updateOrderStatus(Order order);
+	
+	public Payment generatePayment(Order order);
 		 
 
 

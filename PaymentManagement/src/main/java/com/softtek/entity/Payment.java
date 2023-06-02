@@ -18,7 +18,7 @@ public class Payment {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long paymentId;
+    private Integer paymentId;
     
     @Column(name = "PAYMENT_MODE")
     private String paymentMode;
@@ -30,7 +30,7 @@ public class Payment {
     private LocalDateTime dateAndTime;
     
     @Column(name = "ORDER_ID")
-    private Long orderId;
+    private Integer orderId;
     
     @Column(name = "AMOUNT")
     private Double totalAmount;

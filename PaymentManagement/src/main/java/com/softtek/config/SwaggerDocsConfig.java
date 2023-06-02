@@ -1,4 +1,4 @@
-package com.softtek.eshopper.config;
+package com.softtek.config;
 
 import java.util.Collections;
 
@@ -20,14 +20,14 @@ public class SwaggerDocsConfig {
 	Docket createDocket() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.softtek.model"))
+				.apis(RequestHandlerSelectors.basePackage("com.softtek.controller"))
 				.build()
 				.useDefaultResponseMessages(true).apiInfo(getApiInfo());
 	}
 
 	private ApiInfo getApiInfo() {
 		Contact contact = new Contact("Softtek", "https://www.softtek.com", "webmaster@softtek.com");
-		return new ApiInfo("eShoppers API ", " Information About Online Shopping", "5.5.Release",
+		return new ApiInfo("Payment API ", " Information About Online Shopping", "5.5.Release",
 				"https://www.softtek.com", contact, "GNU Public", "http://apache.org/licence/gnu",
 				Collections.emptyList());
 	}
