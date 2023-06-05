@@ -11,6 +11,12 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+/**
+ * 
+ * @author shreelakshmi.ms
+ *
+ * @apiNote Payment Entity and Table Details.
+ */
 @Entity
 @Data
 @Table(name="PAYMENT_DETAILS")

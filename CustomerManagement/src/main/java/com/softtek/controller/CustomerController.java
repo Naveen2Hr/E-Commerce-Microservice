@@ -83,7 +83,7 @@ public class CustomerController {
 	}
 
 	/**
-	 * This API is used to fetch Customer details for the Order service.
+	 *   fetch Customer details for the Order service.
 	 * 
 	 * @param String Customer ID.
 	 * @return Response delete message.

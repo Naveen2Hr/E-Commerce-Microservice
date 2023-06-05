@@ -1,7 +1,6 @@
 package com.softtek.controller;
 
 import java.time.LocalDateTime;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +18,12 @@ import com.softtek.model.Order;
 import com.softtek.service.IPaymentService;
 import com.softtek.service.impl.PaymentServiceImpl;
 
+/**
+ * 
+ * @author shreelakshmi.ms
+ *
+ * @apiNote Rest Controller for the API Handler Methods.
+ */
 @RestController
 @RequestMapping("/payment")
 public class PaymentController {
@@ -31,12 +36,25 @@ public class PaymentController {
 	@Autowired
 	private OrderClient client;
 
+	/**
+	 * save the payment Details
+	 * 
+	 * @param payment
+	 * 
+	 */
 	@PostMapping("/save")
 	public void createPayment(@RequestBody Payment payment) {
 		// set payment date and time
 		payment.setDateAndTime(LocalDateTime.now());
 		paymentService.savePaymentDetails(payment);
 	}
+	
+	/**
+	 * This API is used to get payment details as per OrderId
+	 * 
+	 * @param orderId
+	 * @return payment Details
+	 */
 
 	@GetMapping("/payment/{orderId}")
 	public ResponseEntity<Payment> getPaymentDetailsByOrderId(@PathVariable long orderId) {
@@ -47,6 +65,13 @@ public class PaymentController {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	
+	/**
+	 * This API is used to create a Payment
+	 * 
+	 * @param orderId
+	 * @return message after save the payment Details
+	 */
 
 	@GetMapping("/getPayment")
 	public ResponseEntity<String> generatePayment(@RequestParam(defaultValue = "1") Integer orderId) {

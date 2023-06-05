@@ -12,6 +12,13 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * 
+ * @author shreelakshmi.ms
+ *
+ * @apiNote Swagger Configuration class for the swagger HTML page for the API
+ *          Testing.
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerDocsConfig {
