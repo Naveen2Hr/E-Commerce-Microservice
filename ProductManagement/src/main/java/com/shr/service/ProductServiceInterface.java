@@ -21,6 +21,8 @@ public interface ProductServiceInterface {
 	
 	public List<Product> productRetrival(List<Integer> productIds);
 	
+	public List<Product> getAllProducts();
+	
 	public String selectedProducts(List<Product> productLists);
 	
 	public List<OrderedProduct> getOrderedProductRecords();

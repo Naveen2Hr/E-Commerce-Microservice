@@ -110,4 +110,10 @@ public class ProductServiceImpl implements ProductServiceInterface {
 		return list;
 	}
 
+	@Override
+	public List<Product> getAllProducts() {
+		List<Product> productList = (List<Product>) productRepo.findAll();
+		return productList;
+	}
+
 }

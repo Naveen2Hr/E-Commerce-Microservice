@@ -15,6 +15,14 @@ import com.shr.entity.OrderedProduct;
 import com.shr.entity.Product;
 import com.shr.service.ProductServiceInterface;
 
+/**
+ * 
+ * @author ashik.k
+ * 
+ *	@apiNote This Controller is the Provider Service API
+ *
+ */
+
 @RestController
 @RequestMapping("/providerApi/product")
 public class ProviderController {

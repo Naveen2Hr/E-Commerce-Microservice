@@ -11,6 +11,13 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+/**
+ * 
+ * @author ashik.k
+ * 
+ * 				Entity Class for the Ordered Product Object. With the Table creation
+ *
+ */
 @Data
 @Entity
 @Table(name = "ORDEREDPRODUCT")

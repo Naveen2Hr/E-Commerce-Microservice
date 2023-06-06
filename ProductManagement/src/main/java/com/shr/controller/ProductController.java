@@ -1,5 +1,7 @@
 package com.shr.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,6 +58,18 @@ public class ProductController {
 	 *         This the Handler Method for displaying the Product Record.
 	 * 
 	 */
+//	@GetMapping("/get/Product")
+//	public ResponseEntity<?> displayProductRecord(@RequestParam(defaultValue = "0") Integer productId) {
+//		try {
+//			Product product = service.getProductById(productId);
+//			return new ResponseEntity<Product>(product, HttpStatus.OK);
+//		} catch (Exception e) {
+//			String expMessage = "Something went wrong please try again";
+//			e.printStackTrace();
+//			return new ResponseEntity<String>(expMessage, HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//	}
+
 	@GetMapping("/get/Product")
 	public ResponseEntity<?> displayProductRecord(@RequestParam(defaultValue = "0") Integer productId) {
 		try {
@@ -81,6 +95,22 @@ public class ProductController {
 		try {
 			String message = service.deleteProduct(productId);
 			return new ResponseEntity<String>(message, HttpStatus.OK);
+		} catch (Exception e) {
+			String expMessage = "Something went wrong please try again";
+			e.printStackTrace();
+			return new ResponseEntity<String>(expMessage, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	@GetMapping("/get/productList")
+	public ResponseEntity<?> getAllProducts() {
+		try {
+			List<Product> allProducts = service.getAllProducts();
+			return new ResponseEntity<List<Product>>(allProducts, HttpStatus.OK);
 		} catch (Exception e) {
 			String expMessage = "Something went wrong please try again";
 			e.printStackTrace();
