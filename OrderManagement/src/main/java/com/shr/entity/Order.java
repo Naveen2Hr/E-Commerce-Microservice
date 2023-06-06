@@ -15,6 +15,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 
+ * @author m.rakesh
+ * 
+ * @apiNote Entity class of the Order , Achieving the Many to One
+ * 			relationship with Customer entity 
+ *
+ */
 @Entity
 @Table(name = "ORDER_TABLE")
 @Data

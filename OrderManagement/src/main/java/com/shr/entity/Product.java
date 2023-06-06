@@ -7,6 +7,13 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+/**
+ * 
+ * @author m.rakesh
+ * 
+ * @apiNote Entity class of the Product 
+ *
+ */
 @Data
 @Entity
 @Table(name = "Product_Order_Table")

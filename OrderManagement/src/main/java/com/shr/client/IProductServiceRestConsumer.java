@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shr.entity.Product;
 
+/**
+ * 
+ * @author m.rakesh
+ *  
+ *
+ */
 @FeignClient("Product-Service")
 public interface IProductServiceRestConsumer {
 

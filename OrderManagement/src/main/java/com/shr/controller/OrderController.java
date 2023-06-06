@@ -19,6 +19,11 @@ import com.shr.entity.Order;
 import com.shr.entity.Product;
 import com.shr.service.OrderServiceInterface;
 
+/**
+ * 
+ * @author m.rakesh
+ *
+ */
 @RestController
 @RequestMapping("/api/order")
 public class OrderController {
@@ -31,7 +36,13 @@ public class OrderController {
 
 	@Autowired
 	private ICustomerServiceRestConsumer cClient;
-
+	
+	/**
+	 * 
+	 * @param custId
+	 * @param productIds
+	 * @return
+	 */
 	@PostMapping("/insert-order")
 	public ResponseEntity<?> insertOrderRecord(@RequestParam(name = "custId") String custId,
 			@RequestParam List<Integer> productIds) {

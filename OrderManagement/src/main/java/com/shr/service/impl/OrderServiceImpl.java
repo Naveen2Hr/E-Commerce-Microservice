@@ -15,6 +15,11 @@ import com.shr.repository.OrderRepository;
 import com.shr.repository.ProductRepository;
 import com.shr.service.OrderServiceInterface;
 
+/**
+ * 
+ * @author m.rakesh
+ *
+ */
 @Service
 public class OrderServiceImpl implements OrderServiceInterface {
 
@@ -26,7 +31,10 @@ public class OrderServiceImpl implements OrderServiceInterface {
 
 	@Autowired
 	private CustomerRepository custRepo;
-
+	
+	/**
+	 * Creating the orders 
+	 */
 	@Override
 	public String insertOrder(String custId, List<Integer> productIds) {
 		Order order = new Order();
@@ -51,13 +59,15 @@ public class OrderServiceImpl implements OrderServiceInterface {
 		return save != null ? "Order Has been placed with order-ID :: " + save.getOrderId()
 				: "Something went wrong try again";
 	}
-
+	/**
+	 * Fetching the Orders by orderIds
+	 */
 	@Override
 	public Order getOrderById(Integer orderId) {
 		Order order = orderRepo.findById(orderId).get();
 		return order;
 	}
-
+	
 	@Override
 	public String updateOrderByObject(Order order) {
 		Order save = orderRepo.save(order);

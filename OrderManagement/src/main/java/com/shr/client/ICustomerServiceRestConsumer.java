@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shr.entity.Customer;
 
+/**
+ * 
+ * @author m.rakesh
+ * 
+ *
+ */
 @FeignClient("Customer-Service")
 public interface ICustomerServiceRestConsumer {
 
