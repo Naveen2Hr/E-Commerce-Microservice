@@ -43,7 +43,7 @@ public class Delivery {
 	private Warehouse warehouse;
 
 	@ManyToOne(targetEntity = DeliveryPartner.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "DELIVERY_PARTNER_ID", referencedColumnName = "DP_ID")
+	@JoinColumn(name = "DP_ID", referencedColumnName = "DP_ID")
 	private DeliveryPartner deliveryPartner;
 
 	@Column(name = "PAYMENT_ID")

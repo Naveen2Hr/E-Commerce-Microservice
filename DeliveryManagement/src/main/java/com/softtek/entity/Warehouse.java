@@ -43,7 +43,7 @@ public class Warehouse {
 
 	@JsonIgnore
 	@OneToMany(targetEntity = Delivery.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "DELIVERY_ID", referencedColumnName = "DELIVERY_ID")
+	@JoinColumn(name = "WAREHOUSE_ID", referencedColumnName = "WAREHOUSE_ID")
 	private List<Delivery> deliveryList;
 
 	@Override
