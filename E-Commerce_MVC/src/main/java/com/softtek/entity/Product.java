@@ -6,6 +6,13 @@ import com.softtek.model.ProductType;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * 
+ * @author ashik.k
+ *
+ * @apiNote Product Entity Objects
+ *
+ */
 @Getter
 @Setter
 public class Product {

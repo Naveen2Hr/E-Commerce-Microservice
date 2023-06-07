@@ -58,18 +58,6 @@ public class ProductController {
 	 *         This the Handler Method for displaying the Product Record.
 	 * 
 	 */
-//	@GetMapping("/get/Product")
-//	public ResponseEntity<?> displayProductRecord(@RequestParam(defaultValue = "0") Integer productId) {
-//		try {
-//			Product product = service.getProductById(productId);
-//			return new ResponseEntity<Product>(product, HttpStatus.OK);
-//		} catch (Exception e) {
-//			String expMessage = "Something went wrong please try again";
-//			e.printStackTrace();
-//			return new ResponseEntity<String>(expMessage, HttpStatus.INTERNAL_SERVER_ERROR);
-//		}
-//	}
-
 	@GetMapping("/get/Product")
 	public ResponseEntity<?> displayProductRecord(@RequestParam(defaultValue = "0") Integer productId) {
 		try {

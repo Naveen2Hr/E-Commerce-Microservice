@@ -5,83 +5,121 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+
 <head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 <style type="text/css">
 body {
-	font-family: Tahoma, Arial, sans-serif;
+	font-size: 18px;
+	font-family: 'Secular One', sans-serif;
 }
 
-h1, h2, h3, b {
-	color: white;
-	background-color: #525D76;
+table {
+	border-collapse: collapse;
+	margin: 0;
+	width: 100%;
+	box-shadow: 0 0 5px rgba(0, 0, 0, .25);
 }
 
-h1 {
-	font-size: 22px;
+table tr {
+	padding: .45em;
 }
 
-h2 {
-	font-size: 16px;
+thead tr {
+	background-color: #6e0737;
 }
 
-h3 {
-	font-size: 14px;
+thead th {
+	color: #fff;
+	font-size: 1.15em;
 }
 
-p {
-	font-size: 12px;
+tbody tr:nth-child(even) {
+	background-color: #eaeaea;
 }
 
-a {
-	color: black;
+table th, table td {
+	font-size: 1em;
+	padding: 1em;
+	text-align: center;
 }
 
-.line {
-	height: 1px;
-	background-color: #525D76;
-	border: none;
+thead th {
+	color: #fff;
+	font-size: 1.15em;
+}
+
+@media ( max-width :440px) {
+	table {
+		border: 3px solid #6e0737;
+	}
+	table thead tr {
+		display: none;
+	}
+	table tr {
+		display: block;
+	}
+	table th, table td {
+		padding: .5em;
+	}
+	table td {
+		text-align: right;
+		display: block;
+		font-size: 1em;
+	}
+	table td::before {
+		content: attr(data-title) ": ";
+		float: left;
+	}
+	tbody tr:nth-child(even) {
+		background-color: #6e0737;
+		color: #fff;
+	}
 }
 </style>
 </head>
 
 <body>
-	<table class="table table-bordered" id="myTable"
-		style="align-content: center; border: column-rule-width; border-color: black;">
+	<table>
 		<thead>
-			<tr style="color: white; background: black">
-				<th colspan="7" style="text-align: center;">Product List</th>
-			</tr>
-			<tr style="color: white; background: black">
-				<th style="text-align: center">Product ID</th>
-				<th style="text-align: center">Product Name</th>
-				<th style="text-align: center">Product Category</th>
-				<th style="text-align: center">Product Status</th>
-				<th style="text-align: center">Product Count</th>
-				<th style="text-align: center">Product Type</th>
-				<th style="text-align: center">Product Price</th>
-				<th style="text-align: center">Product Description</th>
+			<tr>
+				<th>Product ID</th>
+				<th>Product Name</th>
+				<th>Product Category</th>
+				<th>Product Status</th>
+				<th>Product Count</th>
+				<th>Product Type</th>
+				<th>Product Price</th>
+				<th>Product Description</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="product" items="${proList}">
 				<tr>
-					<td style="text-align: center"><c:out
+					<td data-title="Product ID"><c:out
 							value="${product.productId}" /></td>
-					<td style="text-align: center"><c:out
+					<td data-title="Product Name"><c:out
 							value="${product.productName}" /></td>
-					<td style="text-align: center"><c:out
+					<td data-title="Product Category"><c:out
 							value="${product.productCategory.catName}" /></td>
-					<td style="text-align: center"><c:out
+					<td data-title="Product Status"><c:out
 							value="${product.productStatus}" /></td>
-					<td style="text-align: center"><c:out
+					<td data-title="Product Count"><c:out
 							value="${product.productCount}" /></td>
-					<td style="text-align: center"><c:out
+					<td data-title="Product Type"><c:out
 							value="${product.productType.typeName}" /></td>
-					<td style="text-align: center"><c:out
+					<td data-title="Product Price"><c:out
 							value="${product.productPrice}" /></td>
-					<td style="text-align: center"><c:out
+					<td data-title="Product Description"><c:out
 							value="${product.productDespcription}" /></td>
-
+					<td data-title="Actions"><a class="btn btn-primary btn-sm"
+						href="edit?productId=${product.productId}"><i class="fas fa-add"></i>Add</a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

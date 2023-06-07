@@ -3,6 +3,13 @@ package com.softtek.entity;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * 
+ * @author ashik.k
+ * 
+ * @apiNote Address Entity Object for the Customer
+ *
+ */
 @Getter
 @Setter
 public class Address {

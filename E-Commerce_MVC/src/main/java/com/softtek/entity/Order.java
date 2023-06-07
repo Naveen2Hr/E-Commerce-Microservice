@@ -5,6 +5,13 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * 
+ * @author ashik.k
+ * 
+ * @apiNote Order Entity Objects
+ *
+ */
 @Getter
 @Setter
 public class Order {

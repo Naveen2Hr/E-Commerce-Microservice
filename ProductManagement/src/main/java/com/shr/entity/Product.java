@@ -49,4 +49,7 @@ public class Product {
 
 	@Column(length = 100)
 	private String productDespcription;
+	
+	@Column(length = 1000)
+	private String imageLoc;
 }

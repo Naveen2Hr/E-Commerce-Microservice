@@ -42,6 +42,7 @@ public class Controller_MVC {
 		List<Product> products = response.getBody();
 		products.stream().forEach(System.out::println);
 
+		map.put("proList", products);
 		return "product_list";
 	}
 

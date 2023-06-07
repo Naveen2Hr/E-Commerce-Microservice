@@ -313,6 +313,7 @@ section {
           <a href="register">Register</a>
           <a href="#">Login</a>
           <a href="#">Contact</a>
+          <a href="productList">Product List</a>
         </div>
       </div>
     </header>

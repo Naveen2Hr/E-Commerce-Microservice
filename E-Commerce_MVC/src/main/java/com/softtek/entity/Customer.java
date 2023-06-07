@@ -7,6 +7,13 @@ import com.softtek.model.AccountType;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * 
+ * @author ashik.k
+ * 
+ * @apiNote Customer Entity Objects
+ *
+ */
 @Getter
 @Setter
 public class Customer {
