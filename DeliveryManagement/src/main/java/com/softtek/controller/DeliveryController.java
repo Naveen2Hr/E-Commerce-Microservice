@@ -39,7 +39,7 @@ public class DeliveryController {
 		map.addAttribute("mode", "deliveryPartnerAdd");
 		return "register";
 	}
-	
+
 	@GetMapping("/registerWarehouse")
 	public String showWarehouseRegistrationPage(Model map) {
 		// form baking object
@@ -65,7 +65,7 @@ public class DeliveryController {
 		map.addAttribute("warehouse", new Warehouse());
 		return "register";
 	}
-	
+
 	@GetMapping("/allDeliveryPartners")
 	public String showAllDeliveryPartners(Model map) {
 		List<DeliveryPartner> list = service.getAllPartnerDetails();
@@ -73,13 +73,20 @@ public class DeliveryController {
 		map.addAttribute("mode", "allDeliveryPartners");
 		return "data";
 	}
-	
+
 	@GetMapping("/allWarehouses")
 	public String showAllWarehouses(Model map) {
 		List<Warehouse> list = service.getAllWarehouseDetails();
 		map.addAttribute("list", list);
 		map.addAttribute("mode", "allWarehouses");
 		return "data";
+	}
+
+	@GetMapping("/updateDeliveryTable")
+	public String updateDeliveryTable(Model map) {
+		map.addAttribute("msg", "Delivery Details Table will be updated soon!!!");
+		String msg = service.updateDeliveryDetailsTable();
+		return "welcome";
 	}
 
 }

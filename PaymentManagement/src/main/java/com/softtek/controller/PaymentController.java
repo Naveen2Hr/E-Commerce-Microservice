@@ -1,6 +1,8 @@
 package com.softtek.controller;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,7 +50,7 @@ public class PaymentController {
 		payment.setDateAndTime(LocalDateTime.now());
 		paymentService.savePaymentDetails(payment);
 	}
-	
+
 	/**
 	 * This API is used to get payment details as per OrderId
 	 * 
@@ -65,7 +67,17 @@ public class PaymentController {
 			return ResponseEntity.notFound().build();
 		}
 	}
-	
+
+	@GetMapping("/all")
+	public ResponseEntity<List<Payment>> getAllPaymentDetails() {
+		List<Payment> paymentList = paymentService.getAllPaymentDetails();
+		if (paymentList != null) {
+			return ResponseEntity.ok(paymentList);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
 	/**
 	 * This API is used to create a Payment
 	 * 

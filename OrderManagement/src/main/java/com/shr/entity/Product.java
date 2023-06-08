@@ -27,7 +27,6 @@ public class Product {
 
 	@Column
 	private Double productPrice;
-	
 
 	@Override
 	public String toString() {

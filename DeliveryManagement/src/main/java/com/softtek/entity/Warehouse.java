@@ -39,7 +39,7 @@ public class Warehouse {
 	private String warehouseCapacity;
 
 	@Column(name = "WAREHOUSE_PINCODE")
-	private String warehousePincode;
+	private Long warehousePincode;
 
 	@JsonIgnore
 	@OneToMany(targetEntity = Delivery.class, cascade = CascadeType.ALL)

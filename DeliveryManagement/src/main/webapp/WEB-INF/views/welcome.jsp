@@ -17,6 +17,8 @@
 <br>
 <a href="/delivery/allDeliveryPartners">View All Delivery Partners</a> &nbsp;
 <a href="/delivery/allWarehouses">View All Warehouses</a>
+<br><br>
+<a href="/delivery/updateDeliveryTable">Update Delivery Details Table</a> &nbsp; ${msg}
 
 </body>
 </html>

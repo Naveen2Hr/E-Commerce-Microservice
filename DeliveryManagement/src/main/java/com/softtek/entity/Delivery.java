@@ -29,8 +29,8 @@ public class Delivery {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer deliveryId;
 
-	@Column(name = "DELIVERY_STATUS", columnDefinition = "boolean default false")
-	private Boolean deliveryStatus;
+	@Column(name = "DELIVERY_STATUS")
+	private String deliveryStatus;
 
 	@Column(name = "DELIVERY_DATE_TIME")
 	private LocalDate date;
