@@ -29,8 +29,8 @@ public class Delivery {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer deliveryId;
 
-	@Column(name = "DELIVERY_STATUS", columnDefinition = "boolean default false")
-	private Boolean deliveryStatus;
+	@Column(name = "DELIVERY_STATUS")
+	private String deliveryStatus;
 
 	@Column(name = "DELIVERY_DATE_TIME")
 	private LocalDate date;
@@ -43,7 +43,7 @@ public class Delivery {
 	private Warehouse warehouse;
 
 	@ManyToOne(targetEntity = DeliveryPartner.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "DELIVERY_PARTNER_ID", referencedColumnName = "DP_ID")
+	@JoinColumn(name = "DP_ID", referencedColumnName = "DP_ID")
 	private DeliveryPartner deliveryPartner;
 
 	@Column(name = "PAYMENT_ID")

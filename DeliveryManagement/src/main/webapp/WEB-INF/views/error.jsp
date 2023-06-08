@@ -5,10 +5,10 @@ pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Bag Error Page</title>
+<title>Delivery Management Error Page</title>
 </head>
 <body>
 <h2>There was some error, Please go to the Home Page</h2>
-<a href="/BagSpringBootCRUDProj/">Home</a> &nbsp;
+<a href="/delivery/welcome">Home</a> &nbsp;
 </body>
 </html>

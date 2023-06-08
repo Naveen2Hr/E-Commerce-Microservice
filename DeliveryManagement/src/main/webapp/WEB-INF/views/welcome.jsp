@@ -6,14 +6,19 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Bag Welcome Page</title>
+<title>Delivery Management App</title>
 </head>
 <body>
 
-<h2>Welcome to Bag Website</h2>
+<h2>Welcome to Delivery Management Website</h2>
 
-<a href="/BagSpringBootCRUDProj/all">View All</a> &nbsp;
-<a href="/BagSpringBootCRUDProj/reg">Register</a>
+<a href="/delivery/registerDeliveryPartner">Register DeliveryPartner</a> &nbsp;
+<a href="/delivery/registerWarehouse">Register Warehouse</a>
+<br>
+<a href="/delivery/allDeliveryPartners">View All Delivery Partners</a> &nbsp;
+<a href="/delivery/allWarehouses">View All Warehouses</a>
+<br><br>
+<a href="/delivery/updateDeliveryTable">Update Delivery Details Table</a> &nbsp; ${msg}
 
 </body>
 </html>

@@ -30,6 +30,9 @@ public class DeliveryPartner {
 	@Column(name = "DP_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer dpId;
+	
+	@Column(name = "NAME")
+	private String dpName;
 
 	@Column(name = "PHONE")
 	private Long dpPhone;
@@ -42,7 +45,7 @@ public class DeliveryPartner {
 
 	@JsonIgnore
 	@OneToMany(targetEntity = Delivery.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "DELIVERY_ID", referencedColumnName = "DELIVERY_ID")
+	@JoinColumn(name = "DP_ID", referencedColumnName = "DP_ID")
 	private List<Delivery> deliveryList;
 
 	@Override

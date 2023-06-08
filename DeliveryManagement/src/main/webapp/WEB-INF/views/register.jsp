@@ -44,44 +44,80 @@
 	</c:choose>
 
 	<pre>
-	
-<form:form action="save" method="post" modelAttribute="objOfBag">
+	<c:choose>
+<c:when test="${'deliveryPartnerAdd' eq mode }">
+<form:form action="save" method="post" modelAttribute="deliveryPartner">
 
-<c:if test="${'edit' eq mode }">
-Id     : <form:input path="id" readOnly="true" />	
-</c:if>
+Name     : <form:input path="dpName" />
 
-colour     : <form:input path="colour" />
+Phone Number     : <form:input path="dpPhone" />
 
-size   	 : <form:input path="size" />
+Vehicle   	 : <form:input path="dpVehicle" />
 
-noOfZips   : <form:input path="noOfZips" />
+Capacity   : <form:input path="dpCapacity" />
 
-<c:choose>
-	
-	<c:when test="${'deliveryPartnerEdit' eq mode }">
-		<input type="submit" value="Update Delivery Partner">
-	</c:when>
-	<c:when test="${'deliveryPartnerAdd' eq mode }">
 		<input type="submit" value="Register Delivery Partner">
-	</c:when>
-	<c:when test="${'warehouseEdit' eq mode }">
-		<input type="submit" value="Update Warehouse">
-	</c:when>
-	<c:when test="${'warehouseAdd' eq mode }">
-		<input type="submit" value="Register Warehouse">
-	</c:when>
-	
-</c:choose>
 
 </form:form>
+</c:when>
 
+<c:when test="${'deliveryPartnerEdit' eq mode }">
+<form:form action="save" method="post" modelAttribute="deliveryPartner">
+
+Id     : <form:input path="dpId" readOnly="true" />	
+
+Name     : <form:input path="dpName" />
+
+Phone Number     : <form:input path="dpPhone" />
+
+Vehicle   	 : <form:input path="dpVehicle" />
+
+Capacity   : <form:input path="dpCapacity" />
+
+
+		<input type="submit" value="Update Delivery Partner">
+
+</form:form>
+</c:when>
+
+<c:when test="${'warehouseAdd' eq mode }">
+<form:form action="create" method="post" modelAttribute="warehouse">
+
+Name     : <form:input path="warehouseName" />
+
+Capacity     : <form:input path="warehouseCapacity" />
+
+Pin-code   	 : <form:input path="warehousePincode" />
+
+
+		<input type="submit" value="Register Warehouse">
+
+</form:form>
+</c:when>
+
+<c:when test="${'warehouseEdit' eq mode }">
+<form:form action="save" method="post" modelAttribute="warehouse">
+
+Id     : <form:input path="warehouseId" readOnly="true" />	
+
+Name     : <form:input path="warehouseName" />
+
+Capacity     : <form:input path="warehouseCapacity" />
+
+Pin-code   	 : <form:input path="warehousePincode" />
+
+
+		<input type="submit" value="Update Warehouse">
+	
+</form:form>
+</c:when>
+</c:choose>
 </pre>
 
 	${msg}
 
-	<a href="/BagSpringBootCRUDProj/all">Show All</a> &nbsp;
-	<a href="/BagSpringBootCRUDProj/">Home</a>
+	<a href="/delivery/all">Show All</a> &nbsp;
+	<a href="/delivery/welcome">Home</a>
 
 
 

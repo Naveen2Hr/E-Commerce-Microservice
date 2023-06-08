@@ -43,6 +43,9 @@ public class Order {
 
 	@Column
 	private Boolean deliveryStatus;
+	
+	@Column
+	private Boolean deliveryAddress;
 
 	@Column
 	private Date orderDate;

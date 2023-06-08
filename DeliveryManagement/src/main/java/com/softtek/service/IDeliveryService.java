@@ -16,7 +16,7 @@ public interface IDeliveryService {
 
 	public List<Delivery> getAllDeliveryDetails();
 
-	public String updateDeliveryStatusByDeliveryId(Integer deliveryId);
+	//public String updateDeliveryStatusByDeliveryId(Integer deliveryId);
 
 	// ****************Delivery Partner Service****************
 
@@ -37,4 +37,6 @@ public interface IDeliveryService {
 	public List<Warehouse> getAllWarehouseDetails();
 
 	public String updateWarehouseDetails(Warehouse warehouse);
+
+	public String updateDeliveryDetailsTable();
 }

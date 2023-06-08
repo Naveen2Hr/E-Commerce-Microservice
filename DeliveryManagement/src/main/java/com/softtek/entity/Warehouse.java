@@ -39,11 +39,11 @@ public class Warehouse {
 	private String warehouseCapacity;
 
 	@Column(name = "WAREHOUSE_PINCODE")
-	private String warehousePincode;
+	private Long warehousePincode;
 
 	@JsonIgnore
 	@OneToMany(targetEntity = Delivery.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "DELIVERY_ID", referencedColumnName = "DELIVERY_ID")
+	@JoinColumn(name = "WAREHOUSE_ID", referencedColumnName = "WAREHOUSE_ID")
 	private List<Delivery> deliveryList;
 
 	@Override
