@@ -27,4 +27,6 @@ public interface ProductServiceInterface {
 	
 	public List<OrderedProduct> getOrderedProductRecords();
 	
+	public String insertOrderProduct(Product product);
+	
 }

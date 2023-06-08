@@ -15,7 +15,7 @@ import lombok.Data;
  * 
  * @author ashik.k
  * 
- * 				Entity Class for the Ordered Product Object. With the Table creation
+ *         Entity Class for the Ordered Product Object. With the Table creation
  *
  */
 @Data
@@ -48,4 +48,7 @@ public class OrderedProduct {
 
 	@Column(length = 100)
 	private String productDespcription;
+
+	@Column(length = 1000)
+	private String imageLoc;
 }

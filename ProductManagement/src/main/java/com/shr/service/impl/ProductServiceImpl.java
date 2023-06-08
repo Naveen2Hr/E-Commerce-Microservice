@@ -116,4 +116,20 @@ public class ProductServiceImpl implements ProductServiceInterface {
 		return productList;
 	}
 
+	@Override
+	public String insertOrderProduct(Product product) {
+		OrderedProduct op = new OrderedProduct();
+		op.setProductId(product.getProductId());
+		op.setProductName(product.getProductName());
+		op.setProductCategory(product.getProductCategory());
+		op.setProductStatus(product.getProductStatus());
+		op.setProductCount(product.getProductCount());
+		op.setProductType(product.getProductType());
+		op.setProductPrice(product.getProductPrice());
+		op.setProductDespcription(product.getProductDespcription());
+		op.setImageLoc(product.getImageLoc());
+		OrderedProduct save = opRepo.save(op);
+		return save!=null?"Product is added to cart":"Something gone wrong please select again";
+	}
+
 }

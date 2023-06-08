@@ -32,4 +32,6 @@ public class Product {
 	private Double productPrice;
 
 	private String productDespcription;
+
+	private String imageLoc;
 }
