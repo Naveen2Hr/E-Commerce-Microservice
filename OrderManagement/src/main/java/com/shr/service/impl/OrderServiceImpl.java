@@ -36,7 +36,7 @@ public class OrderServiceImpl implements OrderServiceInterface {
 	 * Creating the orders 
 	 */
 	@Override
-	public String insertOrder(String custId, List<Integer> productIds) {
+	public String insertOrder(Integer custId, List<Integer> productIds) {
 		Order order = new Order();
 
 		Double totalPrice = 0.0;

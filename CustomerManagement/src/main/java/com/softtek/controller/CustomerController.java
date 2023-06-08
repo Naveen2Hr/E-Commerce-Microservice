@@ -23,7 +23,7 @@ import com.softtek.service.ICustomerService;
  * @apiNote Rest Controller for the API Handler Methods.
  */
 @RestController
-@RequestMapping("customer")
+@RequestMapping("/customer")
 public class CustomerController {
 
 	@Autowired
@@ -35,8 +35,8 @@ public class CustomerController {
 	 * @param customerId.
 	 * @return Customer entity
 	 */
-	@GetMapping("getCustomer")
-	public ResponseEntity<?> getCustomer(@RequestParam(name = "custId") String custId) {
+	@GetMapping("/getCustomer")
+	public ResponseEntity<?> getCustomer(@RequestParam(name = "custId") Integer custId) {
 		try {
 			Customer customerRecord = custService.getCustomerRecord(custId);
 			return new ResponseEntity<Customer>(customerRecord, HttpStatus.OK);
@@ -53,7 +53,7 @@ public class CustomerController {
 	 * @param Customer customer
 	 * @return Response String
 	 */
-	@PostMapping("insertCustomer")
+	@PostMapping("/insertCustomer")
 	public ResponseEntity<?> insertCustomer(@RequestBody Customer customer) {
 		try {
 			String insertCustomerRecord = custService.insertCustomerRecord(customer);
@@ -70,7 +70,7 @@ public class CustomerController {
 	 * 
 	 * @return List of Customer entity
 	 */
-	@GetMapping("getAllCustomer")
+	@GetMapping("/getAllCustomer")
 	public ResponseEntity<?> getAllCustomer() {
 		try {
 			List<Customer> allCustomerRecords = custService.getAllCustomerRecords();
@@ -88,8 +88,8 @@ public class CustomerController {
 	 * @param String Customer ID.
 	 * @return Response delete message.
 	 */
-	@DeleteMapping("deleteCustomer")
-	public ResponseEntity<?> deleteCustomer(@RequestParam(name = "custId") String custId) {
+	@DeleteMapping("/deleteCustomer")
+	public ResponseEntity<?> deleteCustomer(@RequestParam(name = "custId") Integer custId) {
 		try {
 			String deleteCustomerRecord = custService.deleteCustomerRecord(custId);
 			return new ResponseEntity<String>(deleteCustomerRecord, HttpStatus.OK);

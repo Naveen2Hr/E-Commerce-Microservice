@@ -29,7 +29,7 @@ public class ApiProviderController {
 	 * @return Customer entity
 	 */
 	@GetMapping("/details")
-	public ResponseEntity<?> customerDetails(@RequestParam(name = "custId") String custId) {
+	public ResponseEntity<?> customerDetails(@RequestParam(name = "custId") Integer custId) {
 		try {
 			Customer customerRecord = service.getCustomerRecord(custId);
 			return new ResponseEntity<Customer>(customerRecord, HttpStatus.OK);

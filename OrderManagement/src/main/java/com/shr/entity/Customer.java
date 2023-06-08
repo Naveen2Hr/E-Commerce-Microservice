@@ -20,7 +20,7 @@ import lombok.Data;
 public class Customer {
 
 	@Id
-	private String customerId;
+	private Integer customerId;
 
 	@Column(length = 20)
 	private String customerName;

@@ -14,11 +14,11 @@ import com.softtek.entity.Customer;
 public interface ICustomerService {
 	public String insertCustomerRecord(Customer customer);
 
-	public Customer getCustomerRecord(String custId);
+	public Customer getCustomerRecord(Integer custId);
 
 	public List<Customer> getAllCustomerRecords();
 
 	public String updateCustomerRecord(Customer customer);
 
-	public String deleteCustomerRecord(String custId);
+	public String deleteCustomerRecord(Integer custId);
 }

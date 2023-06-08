@@ -18,7 +18,7 @@ import com.shr.entity.Product;
 @Service
 public interface OrderServiceInterface {
 
-	public String insertOrder(String custId, List<Integer> productIds);
+	public String insertOrder(Integer custId, List<Integer> productIds);
 
 	public Order getOrderById(Integer orderId);
 

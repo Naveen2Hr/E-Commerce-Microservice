@@ -44,7 +44,7 @@ public class OrderController {
 	 * @return
 	 */
 	@PostMapping("/insert-order")
-	public ResponseEntity<?> insertOrderRecord(@RequestParam(name = "custId") String custId,
+	public ResponseEntity<?> insertOrderRecord(@RequestParam(name = "custId") Integer custId,
 			@RequestParam List<Integer> productIds) {
 		try {
 			String message = service.insertOrder(custId, productIds);

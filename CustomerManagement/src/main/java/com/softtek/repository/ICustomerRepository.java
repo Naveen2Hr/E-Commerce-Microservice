@@ -11,6 +11,6 @@ import com.softtek.entity.Customer;
  * @apiNote Repository Interface extends JpaRepository with Customer as Type and
  *          ID as String
  */
-public interface ICustomerRepository extends JpaRepository<Customer, String> {
+public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
 
 }

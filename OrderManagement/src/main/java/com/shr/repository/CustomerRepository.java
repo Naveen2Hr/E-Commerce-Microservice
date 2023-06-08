@@ -12,6 +12,6 @@ import com.shr.entity.Customer;
  *          ID as String
  *
  */
-public interface CustomerRepository extends JpaRepository<Customer, String>{
+public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 
 }

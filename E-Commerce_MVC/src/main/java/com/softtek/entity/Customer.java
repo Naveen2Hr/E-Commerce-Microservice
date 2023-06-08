@@ -18,7 +18,7 @@ import lombok.Setter;
 @Setter
 public class Customer {
 
-	private String customerId;
+	private Integer customerId;
 
 	private String customerName;
 

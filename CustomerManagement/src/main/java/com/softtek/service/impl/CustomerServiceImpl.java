@@ -50,7 +50,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	 * 
 	 */
 	@Override
-	public Customer getCustomerRecord(String custId) {
+	public Customer getCustomerRecord(Integer custId) {
 		Customer customer = custRepo.findById(custId).get();
 		return customer != null ? customer : null;
 	}
@@ -92,7 +92,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	 * @return String delete message
 	 */
 	@Override
-	public String deleteCustomerRecord(String custId) {
+	public String deleteCustomerRecord(Integer custId) {
 		custRepo.deleteById(custId);
 		return "Customer ID :: " + custId + " is deleted.";
 	}
