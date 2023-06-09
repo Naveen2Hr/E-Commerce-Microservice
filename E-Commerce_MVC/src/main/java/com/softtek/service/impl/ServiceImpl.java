@@ -19,14 +19,16 @@ public class ServiceImpl implements ServiceInterface {
 			category.setCatId(1002);
 		} else if (parameter1.equalsIgnoreCase("Kadai")) {
 			category.setCatId(1003);
-		} else if (parameter1.equalsIgnoreCase("Clothes")) {
-			category.setCatId(1004);
 		} else if (parameter1.equalsIgnoreCase("Pan")) {
+			category.setCatId(1004);
+		} else if (parameter1.equalsIgnoreCase("Clothes")) {
 			category.setCatId(1005);
-		} else if (parameter1.equalsIgnoreCase("MakeUp")) {
+		} else if (parameter1.equalsIgnoreCase("Shoes")) {
 			category.setCatId(1006);
-		} else if (parameter1.equalsIgnoreCase("FaceWash")) {
+		} else if (parameter1.equalsIgnoreCase("MakeUp")) {
 			category.setCatId(1007);
+		} else if (parameter1.equalsIgnoreCase("FaceWash")) {
+			category.setCatId(1008);
 		}
 		return category;
 	}
