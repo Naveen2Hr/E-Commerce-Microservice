@@ -255,6 +255,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
           </div>
         </div>
         <button type="submit">Register</button>
+        <button><a style="color: white;" href="home">Go Back</a></button>
       </form>
     </section>
   </body>

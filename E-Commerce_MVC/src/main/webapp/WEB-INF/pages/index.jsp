@@ -302,7 +302,6 @@ section {
 				<a href="showProductRegister">Product Register</a> 
 				<a href="#">Login</a>
 				<a href="contact">Contact</a> 
-				<a href="productList">Product List</a>
 			</div>
 		</div>
 	</header>

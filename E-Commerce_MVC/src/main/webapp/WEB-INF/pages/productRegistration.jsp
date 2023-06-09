@@ -262,6 +262,7 @@ form .button input:hover {
 				</div>
 
 				<button class="register" type="submit">Register</button>
+				<button class="register"><a style="color: white;" href="home">Go Back</a></button>
 			</form>
 		</div>
 	</div>
