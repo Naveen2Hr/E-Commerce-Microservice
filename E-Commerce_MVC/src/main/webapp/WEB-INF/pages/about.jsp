@@ -172,7 +172,7 @@
               whether they are selling online, in retail stores, or on-the-go.
             </p>
 					<div class="button">
-						<a href="/">Home Page</a>
+						<a href="home">Home Page</a>
 					</div>
 				</div>
 				<div class="social">
