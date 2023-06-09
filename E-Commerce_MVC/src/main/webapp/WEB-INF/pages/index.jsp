@@ -295,10 +295,14 @@ section {
 		<div class="menu-btn"></div>
 		<div class="navigation">
 			<div class="navigation_items">
-				<a href="register">Home</a> <a href="about">About</a> <a
-					href="productList">Start Shopping</a> <a href="showRegister">Register</a>
-				<a href="showProductRegister">Product Register</a> <a href="#">Login</a>
-				<a href="#">Contact</a> <a href="productList">Product List</a>
+				<a href="home">Home</a> 
+				<a href="about">About</a>
+				<a href="productList">Start Shopping</a> 
+				<a href="showRegister">Register</a>
+				<a href="showProductRegister">Product Register</a> 
+				<a href="#">Login</a>
+				<a href="contact">Contact</a> 
+				<a href="productList">Product List</a>
 			</div>
 		</div>
 	</header>

@@ -20,6 +20,8 @@ import org.springframework.web.client.RestTemplate;
 
 import com.softtek.entity.Address;
 import com.softtek.entity.Customer;
+import com.softtek.entity.Order;
+import com.softtek.entity.OrderedProduct;
 import com.softtek.entity.Product;
 import com.softtek.model.AccountType;
 import com.softtek.model.ProductCategory;
@@ -34,15 +36,24 @@ public class Controller_MVC {
 	@Autowired
 	public ServiceInterface service;
 
-	@GetMapping("/")
+	@GetMapping("/home")
 	public String showHome() {
 		return "index";
 	}
 
+	@GetMapping("/about")
+	public String showAboutPage() {
+		return "about";
+	}
+
+	@GetMapping("/showRegister")
+	public String showRegisterPage() {
+		return "registration";
+	}
+
 	@GetMapping("/add")
-	public String addProductToCart(HttpServletRequest req) {
+	public String addProductToCart(HttpServletRequest req, Map<String, Object> map) {
 		Integer productId = Integer.parseInt(req.getParameter("productId"));
-		System.out.println(productId);
 
 		// creating RestTemplate Instance.
 		RestTemplate restTemplate = new RestTemplate();
@@ -65,12 +76,16 @@ public class Controller_MVC {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "index";
-	}
+		RestTemplate restTemplate1 = new RestTemplate();
+		ResponseEntity<List<Product>> response = restTemplate1.exchange(
+				"http://localhost:9905/api/product/get/productList", HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<Product>>() {
+				});
+		List<Product> products = response.getBody();
 
-	@GetMapping("/showRegister")
-	public String showRegisterPage() {
-		return "registration";
+		products.stream().forEach(System.out::println);
+		map.put("proList", products);
+		return "product_list";
 	}
 
 	@PostMapping("/register")
@@ -91,9 +106,6 @@ public class Controller_MVC {
 		List<Address> addresses = new ArrayList<Address>();
 		addresses.add(address);
 		customer.setCustomerAddress(addresses);
-
-		System.out.println(customer);
-		addresses.stream().forEach(System.out::println);
 
 		RestTemplate restTemplate = new RestTemplate();
 
@@ -119,7 +131,8 @@ public class Controller_MVC {
 	}
 
 	@PostMapping("/productRegister")
-	public String customerProductRegistration(HttpServletRequest req) {
+	public String productRegistration(HttpServletRequest req) {
+
 		Product product = new Product();
 		product.setProductName(req.getParameter("productName"));
 
@@ -169,6 +182,44 @@ public class Controller_MVC {
 		return "index";
 	}
 
+	@GetMapping("/order")
+	public String orderDetails(Map<String, Object> map) {
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<List<OrderedProduct>> response = restTemplate.exchange(
+				"http://localhost:9905/api/product/getOrderedProducts", HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<OrderedProduct>>() {
+				});
+
+		List<OrderedProduct> orderedProductList = response.getBody();
+		System.out.println(orderedProductList.get(1).getProductId());
+
+		List<Integer> pIds = new ArrayList<Integer>();
+
+		for (OrderedProduct op : orderedProductList) {
+			pIds.add(op.getProductId());
+		}
+
+		pIds.stream().forEach(System.out::println);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		HttpEntity<List<Integer>> requestEntity = new HttpEntity<List<Integer>>(pIds, headers);
+
+		String apiUrl = "http://localhost:9903/api/order/insertorder";
+		try {
+			ResponseEntity<Order> postForEntity = restTemplate.postForEntity(apiUrl, requestEntity, Order.class);
+			Order order = postForEntity.getBody();
+			map.put("opl", orderedProductList);
+			map.put("order", order);
+			Double totalPrice = order.getTotalPrice();
+			map.put("totalPrice", (totalPrice + 500 - 100));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "payment";
+	}
+
 	@GetMapping("/productList")
 	public String myPage(Map<String, Object> map) {
 		RestTemplate restTemplate = new RestTemplate();
@@ -182,9 +233,9 @@ public class Controller_MVC {
 		return "product_list";
 	}
 
-	@GetMapping("/about")
-	public String showAboutPage() {
-		return "about";
+	@GetMapping("/contact")
+	public String showContact() {
+		return "Contact";
 	}
 
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shr.entity.OrderedProduct;
 import com.shr.entity.Product;
 import com.shr.service.ProductServiceInterface;
 
@@ -132,6 +133,18 @@ public class ProductController {
 		try {
 			String message = service.productStatusUpdate(productId, status);
 			return new ResponseEntity<String>(message, HttpStatus.OK);
+		} catch (Exception e) {
+			String expMessage = "Something went wrong please try again";
+			e.printStackTrace();
+			return new ResponseEntity<String>(expMessage, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@GetMapping("/getOrderedProducts")
+	public ResponseEntity<?> getOrderedProducts() {
+		try {
+			List<OrderedProduct> orderedProductRecords = service.getOrderedProductRecords();
+			return new ResponseEntity<List<OrderedProduct>>(orderedProductRecords, HttpStatus.OK);
 		} catch (Exception e) {
 			String expMessage = "Something went wrong please try again";
 			e.printStackTrace();

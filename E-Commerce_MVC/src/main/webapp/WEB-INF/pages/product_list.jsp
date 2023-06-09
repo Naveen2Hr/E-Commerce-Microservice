@@ -18,7 +18,6 @@ body {
 	font-family: 'Secular One', sans-serif;
 }
 
-
 table {
 	border-collapse: collapse;
 	margin: 0;
@@ -85,7 +84,12 @@ thead th {
 </head>
 
 <body>
- <a href="order" style="float:right;margin: 40px; max-width: 200px; border-radius: 10px;padding: 10px;" class="btn btn-primary btn-sm">Proceed with Order</a>
+	<a href="order"
+		style="float: right; margin: 40px; max-width: 200px; border-radius: 10px; padding: 10px; size: 10px;"
+		class="btn btn-primary btn-sm">Proceed with Order</a>
+	<a href="home"
+		style="float: right; margin: 40px; max-width: 200px; border-radius: 10px; padding: 10px; size: 10px;"
+		class="btn btn-primary btn-sm">Home</a>
 	<table>
 		<thead>
 			<tr>
@@ -103,9 +107,8 @@ thead th {
 		<tbody>
 			<c:forEach var="product" items="${proList}">
 				<tr>
-					<td data-title="Product Image">
-						<img style="max-width: 80px"  src="${product.imageLoc} }">
-					</td>
+					<td data-title="Product Image"><img style="max-width: 80px"
+						src="${product.imageLoc} }"></td>
 					<td data-title="Product Name"><c:out
 							value="${product.productName}" /></td>
 					<td data-title="Product Category"><c:out
@@ -121,8 +124,9 @@ thead th {
 					<td data-title="Product Description"><c:out
 							value="${product.productDespcription}" /></td>
 					<td data-title="Actions"><a class="btn btn-primary btn-sm"
-						href="add?productId=${product.productId}"><i class="fas fa-add"></i>Add</a>
-						<input type="text" value="" style="width: 25%; margin-left: 10px;border: 2px solid black; border-radius: 5px">
+						href="add?productId=${product.productId}"><i
+							class="fas fa-add"></i>Add</a> <input type="text" value=""
+						style="width: 25%; margin-left: 10px; border: 2px solid black; border-radius: 5px">
 					</td>
 				</tr>
 			</c:forEach>

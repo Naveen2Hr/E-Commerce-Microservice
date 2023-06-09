@@ -6,7 +6,7 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8" />
-<title>Responsive Registration Form | CodingLab</title>
+<title>Product Registration Form</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <style>
@@ -43,6 +43,15 @@ body {
 	font-size: 25px;
 	font-weight: 500;
 	position: relative;
+}
+
+.register {
+	background-color: green;
+	color: white;
+	border-radius: 10px;
+	width: 30%;
+	padding: 10px;
+	margin-left: 220px;
 }
 
 .container .title::before {
@@ -141,7 +150,7 @@ form input[type="radio"] {
 	display: none;
 }
 
-form .button {
+form button {
 	height: 45px;
 	margin: 35px 0;
 }
@@ -238,7 +247,7 @@ form .button input:hover {
 							<option value="Electronics">Electronics</option>
 							<option value="Fashion">Fashion</option>
 							<option value="Beauty">Beauty</option>
-							<option value="Applaince">Applaince</option>
+							<option value="Applaince">Appliances</option>
 						</select>
 					</div>
 					<div class="input-box">
@@ -247,12 +256,12 @@ form .button input:hover {
 					</div>
 					<div class="input-box">
 						<span class="details">Product Description</span>
-						<textarea name="description" cols="90" rows="4"
+						<textarea name="description" cols="40" rows="4"
 							placeholder="Enter the Description" required></textarea>
 					</div>
 				</div>
 
-				<button type="submit">Register</button>
+				<button class="register" type="submit">Register</button>
 			</form>
 		</div>
 	</div>

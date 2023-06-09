@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,9 @@ import com.shr.entity.Customer;
 import com.shr.entity.Order;
 import com.shr.entity.Product;
 import com.shr.service.OrderServiceInterface;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 
@@ -36,19 +40,21 @@ public class OrderController {
 
 	@Autowired
 	private ICustomerServiceRestConsumer cClient;
-	
+
+	private Integer custId = 1;
+
 	/**
 	 * 
 	 * @param custId
 	 * @param productIds
 	 * @return
 	 */
-	@PostMapping("/insert-order")
-	public ResponseEntity<?> insertOrderRecord(@RequestParam(name = "custId") Integer custId,
-			@RequestParam List<Integer> productIds) {
+	@PostMapping("/insertorder")
+	public ResponseEntity<?> insertOrderRecord(@RequestBody List<Integer> productIds) {
 		try {
-			String message = service.insertOrder(custId, productIds);
-			return new ResponseEntity<String>(message, HttpStatus.OK);
+			setCustId(custId++);
+			Order insertOrder = service.insertOrder(1, productIds);
+			return new ResponseEntity<Order>(insertOrder, HttpStatus.OK);
 		} catch (Exception e) {
 			String expMessage = "Something went wrong please try again";
 			e.printStackTrace();
@@ -105,6 +111,14 @@ public class OrderController {
 			e.printStackTrace();
 			return new ResponseEntity<String>(expMessage, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+
+	public Integer getCustId() {
+		return custId;
+	}
+
+	public void setCustId(Integer custId) {
+		this.custId = custId;
 	}
 
 }

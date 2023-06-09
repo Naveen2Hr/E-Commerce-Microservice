@@ -31,12 +31,12 @@ public class OrderServiceImpl implements OrderServiceInterface {
 
 	@Autowired
 	private CustomerRepository custRepo;
-	
+
 	/**
-	 * Creating the orders 
+	 * Creating the orders
 	 */
 	@Override
-	public String insertOrder(Integer custId, List<Integer> productIds) {
+	public Order insertOrder(Integer custId, List<Integer> productIds) {
 		Order order = new Order();
 
 		Double totalPrice = 0.0;
@@ -56,9 +56,9 @@ public class OrderServiceImpl implements OrderServiceInterface {
 		order.setTotalPrice(totalPrice);
 
 		Order save = orderRepo.save(order);
-		return save != null ? "Order Has been placed with order-ID :: " + save.getOrderId()
-				: "Something went wrong try again";
+		return save;
 	}
+
 	/**
 	 * Fetching the Orders by orderIds
 	 */
@@ -67,7 +67,7 @@ public class OrderServiceImpl implements OrderServiceInterface {
 		Order order = orderRepo.findById(orderId).get();
 		return order;
 	}
-	
+
 	@Override
 	public String updateOrderByObject(Order order) {
 		Order save = orderRepo.save(order);

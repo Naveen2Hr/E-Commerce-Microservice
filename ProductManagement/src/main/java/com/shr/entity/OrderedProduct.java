@@ -23,7 +23,6 @@ import lombok.Data;
 @Table(name = "ORDEREDPRODUCT")
 public class OrderedProduct {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer productId;
 
 	@Column(length = 20)
