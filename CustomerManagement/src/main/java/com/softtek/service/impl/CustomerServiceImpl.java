@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.softtek.entity.Customer;
 import com.softtek.repository.ICustomerRepository;
 import com.softtek.service.ICustomerService;
+import com.softtek.service.IEmailDispatcher;
 
 /**
  * 
@@ -22,6 +23,9 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Autowired
 	private ICustomerRepository custRepo;
 
+	@Autowired
+	private IEmailDispatcher mailDispatcher;
+
 	/**
 	 * this method is used to insert Customer details
 	 * 
@@ -32,10 +36,16 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Override
 	public String insertCustomerRecord(Customer customer) {
 		if (customer != null) {
+			String mailMessage = "";
 			Customer insertedRecord = custRepo.save(customer);
+			try {
+				mailMessage = mailDispatcher.customerMailGenerator(customer);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return insertedRecord != null
 					? insertedRecord.getCustomerName() + " record is inserted with the Customer ID :: "
-							+ insertedRecord.getCustomerId()
+							+ insertedRecord.getCustomerId() + " And " + mailMessage
 					: "Customer Record is not inserted please try again";
 		} else {
 			return "Customer record is not valid please check and try again";

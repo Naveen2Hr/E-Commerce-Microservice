@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Authorization failed</title>
+</head>
+<body>
+	<h1 style="color: red; text-align: center">
+		Authorization failed for <span th:text="${username}"> </span>
+	</h1>
+	<br>
+	<a th:href="@{/bank/}">home</a>
+</body>
+</html>

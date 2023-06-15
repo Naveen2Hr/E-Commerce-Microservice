@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>User Registration Form</title>
+<!---Custom CSS File--->
+<style>
+/* Import Google font - Poppins */
+@import
+	url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap")
+	;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
+.opt {
+	width: 449px;
+	height: 50px;
+	border-radius: 7px;
+}
+
+body {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background: rgb(130, 106, 251);
+}
+
+.container {
+	position: relative;
+	max-width: 500px;
+	width: 100%;
+	background: #fff;
+	padding: 25px;
+	border-radius: 8px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.container header {
+	font-size: 1.5rem;
+	color: #333;
+	font-weight: 500;
+	text-align: center;
+}
+
+.container .form {
+	margin-top: 30px;
+}
+
+.form .input-box {
+	width: 100%;
+	margin-top: 20px;
+}
+
+.input-box label {
+	color: #333;
+}
+
+.form :where(.input-box input, .select-box) {
+	position: relative;
+	height: 50px;
+	width: 100%;
+	outline: none;
+	font-size: 1rem;
+	color: #707070;
+	margin-top: 8px;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	padding: 0 15px;
+}
+
+.input-box input:focus {
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.form .column {
+	display: flex;
+	column-gap: 15px;
+}
+
+.form .role-box {
+	margin-top: 20px;
+}
+
+.role-box h3 {
+	color: #333;
+	font-size: 1rem;
+	font-weight: 400;
+	margin-bottom: 8px;
+}
+
+.form :where(.role-option, .role) {
+	display: flex;
+	align-items: center;
+	column-gap: 50px;
+	flex-wrap: wrap;
+}
+
+.form .role {
+	column-gap: 5px;
+}
+
+.role input {
+	accent-color: rgb(130, 106, 251);
+}
+
+.form :where(.role input, .role label) {
+	cursor: pointer;
+}
+
+.role label {
+	color: #707070;
+}
+
+.address :where(input, .select-box) {
+	margin-top: 15px;
+}
+
+.select-box select {
+	height: 100%;
+	width: 100%;
+	outline: none;
+	border: none;
+	color: #707070;
+	font-size: 1rem;
+}
+
+.form button {
+	height: 55px;
+	width: 40%;
+	border-radius: 10px;
+	color: #fff;
+	font-size: 1rem;
+	font-weight: 400;
+	margin-top: 30px;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	background: rgb(130, 106, 251);
+	margin-left: 30%;
+}
+
+.form button:hover {
+	background: rgb(88, 56, 250);
+}
+
+/*Responsive*/
+@media screen and (max-width: 500px) {
+	.form .column {
+		flex-wrap: wrap;
+	}
+	.form :where(.role-option, .role) {
+		row-gap: 15px;
+	}
+}
+</style>
+</head>
+
+<body>
+	<section class="container">
+		<header>User Registration Form</header>
+		<br>
+		<hr>
+		<form th:action="@{/user/register}" class="form" th:object="${userInfo}"
+			method="POST">
+			<table>
+				<tr>
+					<td class="input-box">Full Name</td>
+					<td><input type="text" th:field="*{userName}" /></td>
+				</tr>
+			</table>
+			
+			<table>
+				<tr>
+					<td class="input-box">Email Address</td>
+					<td><input type="text" th:field="*{userEmail}" /></td>
+				</tr>
+			</table>
+			
+			<table>
+				<tr>
+					<td class="input-box">Password</td>
+					<td><input type="password" th:field="*{userPassword}" /></td>
+				</tr>
+			</table>
+			
+			<table>
+				<tr>
+					<td class="input-box">Roles</td>
+					<td>
+						<input type="checkbox" th:field="*{roles}" value="CUSTOMER" checked/>CUSTOMER
+						<input type="checkbox" th:field="*{roles}" value="MANAGER" checked/>MANAGER
+						<input type="checkbox" th:field="*{roles}" value="SELLER" checked/>SELLER
+					</td>
+				</tr>
+				<tr>
+				<td>
+					<input type="submit" value="register" />
+					<input type="reset" value="cancel" />
+				</td>
+			</tr>
+			</table>
+			
+
+			<!-- <div class="input-box">
+				<label>Email Address</label> <input type="text"
+					th:field="*{userEmail}" placeholder="Enter email address" required />
+			</div>
+			<div class="input-box">
+				<label>Password</label> <input type="password"
+					th:field="*{userPassword}" placeholder="Enter password" required />
+			</div>
+			<div class="role-box">
+				<h3>Role</h3>
+				<div class="role-option">
+					<div class="role">
+						<div class="opt">
+							<input type="checkbox" th:field="*{roles}" value="CUSTOMER"
+								checked />CUSTOMER <input type="checkbox" th:field="*{roles}"
+								value="MANAGER" checked />MANAGER
+						</div>
+					</div>
+				</div>
+			</div>
+			<button value="submit">Submit</button> -->
+		</form>
+	</section>
+	<input type="hidden" name="${_csrf.parameterName}"
+		value="${_csrf.token}">
+</body>
+
+</html>
