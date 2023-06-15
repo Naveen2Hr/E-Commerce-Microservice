@@ -1,147 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Email</title>
-<style>
-body {
-	font-family: "lato", sans-serif;
-}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asset</title>
+    <style>
+      body {
+        font-family: "Trebuchet MS", sans-serif;
+      }
 
-.container {
-	max-width: 1000px;
-	margin-left: auto;
-	margin-right: auto;
-	padding-left: 10px;
-	padding-right: 10px;
-}
+      #asset {
+        border-collapse: collapse;
+        width: 100%;
+        border-color: #6440dd;
+        padding: 10px;
+        margin: initial;
+      }
 
-h2 {
-	font-size: 26px;
-	margin: 20px 0;
-	text-align: center;
-}
+      #employee {
+        border: darkslategray;
+        padding: 20px;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
 
-h2 small {
-	font-size: 0.5em;
-}
+      #endCard {
+        border: thick;
+        background-color: powderblue;
+        padding-left: 10px;
+      }
 
-.responsive-table li {
-	border-radius: 3px;
-	padding: 25px 30px;
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 25px;
-}
+      #asset td,
+      #asset th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+      }
 
-.responsive-table .table-header {
-	background-color: #95a5a6;
-	font-size: 14px;
-	text-transform: uppercase;
-	letter-spacing: 0.03em;
-}
+      #asset tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
 
-.responsive-table .table-row {
-	background-color: #ffffff;
-	box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
-}
+      #asset tr:hover {
+        background-color: #ddd;
+      }
 
-.responsive-table .col-1 {
-	flex-basis: 10%;
-}
-
-.responsive-table .col-2 {
-	flex-basis: 40%;
-}
-
-.responsive-table .col-3 {
-	flex-basis: 25%;
-}
-
-.responsive-table .col-4 {
-	flex-basis: 25%;
-}
-
-.responsive-table .col-5 {
-	flex-basis: 25%;
-}
-
-.responsive-table .col-6 {
-	flex-basis: 25%;
-}
-
-@media all and (max-width: 767px) {
-	.responsive-table .table-header {
-		display: none;
-	}
-	.responsive-table li {
-		display: block;
-	}
-	.responsive-table .col {
-		flex-basis: 100%;
-	}
-	.responsive-table .col {
-		display: flex;
-		padding: 10px 0;
-	}
-	.responsive-table .col:before {
-		color: #6c7a89;
-		padding-right: 10px;
-		content: attr(data-label);
-		flex-basis: 50%;
-		text-align: right;
-	}
-}
-</style>
-</head>
-<body>
-	<div id="employee">
-		Hi ${customer.customerName} ,<br /> &nbsp; &nbsp; &nbsp; &nbsp;
-		&nbsp; &nbsp; &nbsp; Below are your Registration details.<br />
-		<br />
-		<br /> &nbsp; &nbsp; &nbsp; Name &nbsp; &nbsp;::
-		${customer.customerName}.<br /> &nbsp; &nbsp; &nbsp; Email &nbsp;
-		&nbsp;:: ${customer.customerEmail}.<br /> &nbsp; &nbsp; &nbsp;
-		Date&nbsp; &nbsp; &nbsp; :: ${date}.<br />
-	</div>
-	<br />
-	<br />
-	<br />
-	<div class="container">
-		<h2>Customer Registration Details</h2>
-		<ul class="responsive-table">
-			<li class="table-header">
-				<div class="col col-1">Id</div>
-				<div class="col col-2">Name</div>
-				<div class="col col-3">Contact</div>
-				<div class="col col-4">Gender</div>
-				<div class="col col-5">Type</div>
-				<div class="col col-6">Email</div>
-			</li>
-			<li class="table-row">
-				<div class="col col-1" data-label="Id">${customer.customerId}</div>
-				<div class="col col-2" data-label="Name">
-					${customer.customerName}</div>
-				<div class="col col-3" data-label="Contact">
-					${customer.customerContact}</div>
-				<div class="col col-4" data-label="Gender">
-					${customer.customerGender}</div>
-				<div class="col col-5" data-label="Type">
-					${customer.customerType.typeName}</div>
-				<div class="col col-6" data-label="Address">
-					${customer.customerEmail}</div>
-			</li>
-		</ul>
-	</div>
-	<br />
-	<br />
-	<div id="endCard">
+      #asset th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #6440dd;
+        color: white;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="employee">
+      Hi ${customer.customerName} ,<br />
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Below are Your Registration 
+      details.<br /><br /><br />
+      &nbsp; &nbsp; &nbsp; Name &nbsp; &nbsp;::
+      ${customer.customerName}.<br />
+      &nbsp; &nbsp; &nbsp; Email &nbsp; &nbsp;::
+      ${customer.customerEmail}.<br />
+      &nbsp; &nbsp; &nbsp; Date&nbsp; &nbsp; &nbsp; :: ${date}.<br />
+    </div>
+    <br />
+    <br />
+    <br />
+    <table id="asset">
+      <tr>
+        <th colspan="2">Customer Registration Details</th>
+      </tr>
+      <tr>
+        <td>Id</td>
+        <td>${customer.customerId}</td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td>${customer.customerName}</td>
+      </tr>
+      <tr>
+        <td>Contact</td>
+        <td>${customer.customerContact}</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td>${customer.customerGender}</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>${customer.customerEmail}</td>
+      </tr>
+    </table>
+    <br />
+    <br />
+    <div id="endCard">
 		<h5>
 			Thanks and Regards<br /> Customer Service E^Shoppers
 		</h5>
 		<h3 style="color: blue">E^Shoppers India</h3>
 		<h5></h5>
 	</div>
-</body>
+  </body>
 </html>

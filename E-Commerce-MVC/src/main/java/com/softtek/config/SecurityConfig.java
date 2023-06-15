@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/shop/productList").hasAnyAuthority("CUSTOMER", "MANAGER", "SELLER")
 				// Authorization only for "MANAGER"
 				.antMatchers("/showProductRegister", "/productRegister",
-						"/shop/order", "/shop/register")
+						"/shop/order", "/shop/register","/shop/add")
 				.hasAnyAuthority("MANAGER", "SELLER").anyRequest().authenticated().and().formLogin()
 				.defaultSuccessUrl("/shop/", true).loginPage("/user/showLogin").loginProcessingUrl("/login")
 				.failureUrl("/user/showLogin?error")// Authentication Failed url

@@ -79,7 +79,7 @@ thead th {
 </head>
 
 <body>
-	<a href="order"
+	<a th:href="@{order}"
 		style="float: right; margin: 40px; max-width: 200px; border-radius: 10px; padding: 10px; size: 10px;"
 		class="btn btn-primary btn-sm">Proceed with Order</a>
 	<a href="home"
@@ -102,7 +102,8 @@ thead th {
 		<tbody>
 
 			<tr th:each="product : ${proList}">
-				<td th:text="${product.imageLoc}"></td>
+				<td><img style="max-width: 50px" th:src="${product.imageLoc}">
+				</td>
 				<td th:text="${product.productName}"></td>
 				<td th:text="${product.productCategory.catName}"></td>
 				<td th:text="${product.productStatus}"></td>
@@ -110,7 +111,7 @@ thead th {
 				<td th:text="${product.productType.typeName}"></td>
 				<td th:text="${product.productPrice}"></td>
 				<td th:text="${product.productDespcription}"></td>
-				<td data-title="Actions"><a class="btn btn-primary btn-sm"
+				<td><a class="btn btn-primary btn-sm"
 					href="add?productId=${product.productId}"><i class="fas fa-add"></i>Add</a>
 				</td>
 			</tr>

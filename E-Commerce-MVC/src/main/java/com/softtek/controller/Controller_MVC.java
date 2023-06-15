@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import com.softtek.entity.Address;
@@ -60,7 +61,7 @@ public class Controller_MVC {
 
 	@GetMapping("/add")
 	public String addProductToCart(HttpServletRequest req, Map<String, Object> map) {
-		Integer productId = Integer.parseInt(req.getParameter("productId"));
+		Integer prodId = Integer.parseInt(req.getParameter("productId"));
 
 		// creating RestTemplate Instance.
 		RestTemplate restTemplate = new RestTemplate();
@@ -73,7 +74,7 @@ public class Controller_MVC {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		// Creating an Integer HTTPEntity
-		HttpEntity<Integer> requestEntity = new HttpEntity<Integer>(productId, headers);
+		HttpEntity<Integer> requestEntity = new HttpEntity<Integer>(prodId, headers);
 
 		// using Rest Template we are hitting the API end points and getting the
 		// Response Entity
@@ -236,6 +237,9 @@ public class Controller_MVC {
 				});
 		List<Product> products = response.getBody();
 		products.stream().forEach(System.out::println);
+		for (Product product : products) {
+			System.out.println(product.getProductId());
+		}
 		map.put("proList", products);
 		return "product_list";
 	}

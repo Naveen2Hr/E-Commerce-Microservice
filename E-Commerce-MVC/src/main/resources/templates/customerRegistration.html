@@ -155,61 +155,60 @@ body {
 <body>
 	<section class="container">
 		<header>Customer Registration Form</header>
-		<form action="register" class="form" method="post">
+		<form th:action="register" class="form" method="post">
 			<div class="input-box">
 				<label>Full Name</label> <input type="text"
-					value="<c:out value='${customer.customerName}'/>"
+				
 					name="customerName" placeholder="Enter full name" required />
 			</div>
 
 			<div class="input-box">
 				<label>Email Address</label> <input type="text"
-					value="<c:out value='${customer.customerEmail}'/>"
-					name="customerEmail" placeholder="Enter email address" required />
+					
+					name="customerEmail" placeholder="Enter your Email" required />
 			</div>
 
 			<div class="column">
 				<div class="input-box">
 					<label>Phone Number</label> <input type="text"
-						value="<c:out value='${customer.customerContact}'/>"
-						name="customerContact" placeholder="Enter phone number" required />
+					
+					name="customerContact" placeholder="Enter your contact" required />
 				</div>
 			</div>
 			<div class="column">
 				<div class="input-box">
 					<label>Gender</label> <input type="text"
-						value="<c:out value='${customer.customerGender}'/>"
-						name="customerGender" placeholder="Enter your gender" required />
+					
+					name="customerGender" placeholder="Enter your gender" required />
 				</div>
 			</div>
 			<h3>Address Details</h3>
 			<div class="column">
 				<div class="input-box">
 					<label>House details</label> <input type="text"
-						value="<c:out value='${address.houseDetails}'/>"
-						name="houseDetails" placeholder="Enter your house details"
-						required />
+					
+					name="houseDetails" placeholder="House Details" required />
 				</div>
 			</div>
 			<div class="column">
 				<div class="input-box">
 					<label>City</label> <input type="text"
-						value="<c:out value='${address.city}'/>" name="city"
-						placeholder="Enter your City" required />
+					
+					name="city" placeholder="Enter your city" required />
 				</div>
 			</div>
 			<div class="column">
 				<div class="input-box">
 					<label>State</label> <input type="text"
-						value="<c:out value='${address.state}'/>" name="state"
-						placeholder="Enter your state" required />
+					
+					name="state" placeholder="Enter your state" required />
 				</div>
 			</div>
 			<div class="column">
 				<div class="input-box">
 					<label>Pincode</label> <input type="text"
-						value="<c:out value='${address.pincode}'/>" name="pincode"
-						placeholder="pincode" required />
+					
+					name="pincode" placeholder="Enter full name" required />
 				</div>
 			</div>
 			<button type="submit">Register</button>

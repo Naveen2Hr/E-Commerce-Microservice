@@ -195,7 +195,7 @@
 			<div>
 				<h2>Order ID</h2>
 
-				<div class="card">${order.orderId}</div>
+				<div class="card">#18181822</div>
 			</div>
 
 			<fieldset>
@@ -217,13 +217,13 @@
 
 					<table>
 						<tbody>
-							<c:forEach var="product" items="${opl}">
+							
 
-								<tr>
-									<td>${product.productName}</td>
-									<td align="right">${product.productPrice}</td>
+								<tr th:each="product : ${opl}">
+									<td th:text="${product.productName}"></td>
+									<td th:text="${product.productPrice}" align="right"></td>
 								</tr>
-							</c:forEach>
+							
 							<tr>
 								<td>Shipping fee</td>
 								<td align="right">500</td>
@@ -234,13 +234,13 @@
 							</tr>
 							<tr>
 								<td>Price Total</td>
-								<td align="right">${order.totalPrice}</td>
+								<td th:text="${order.totalPrice}" align="right"></td>
 							</tr>
 						</tbody>
 						<tfoot>
 							<tr>
 								<td>Total</td>
-								<td align="right">${totalPrice}</td>
+								<td th:text="${order.totalPrice}" align="right"></td>
 							</tr>
 						</tfoot>
 					</table>

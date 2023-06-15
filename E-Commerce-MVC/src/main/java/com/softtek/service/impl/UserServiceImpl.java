@@ -40,6 +40,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public String register(UserInfo details) {
 		details.setUserPassword(encoder.encode(details.getUserPassword()));
+		System.out.println("1");
 		return "UserId :: " + userRepo.save(details).getUserId();
 	}
 
