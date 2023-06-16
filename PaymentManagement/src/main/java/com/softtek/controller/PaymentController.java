@@ -1,6 +1,5 @@
 package com.softtek.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +44,14 @@ public class PaymentController {
 	 * 
 	 */
 	@PostMapping("/save")
-	public void createPayment(@RequestBody Payment payment) {
-		// set payment date and time
-		payment.setDateAndTime(LocalDateTime.now());
-		paymentService.savePaymentDetails(payment);
+	public ResponseEntity<?> createPayment(@RequestBody Payment payment) {
+		try {
+			String save = paymentService.savePaymentDetails(payment);
+			return new ResponseEntity<String>(save, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>("Something went wrong please try again", HttpStatus.OK);
+		}
 	}
 
 	/**

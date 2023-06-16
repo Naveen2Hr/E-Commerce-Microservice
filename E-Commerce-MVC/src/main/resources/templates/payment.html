@@ -247,12 +247,9 @@
 				</div>
 
 				<div class="Checkout">
-					<button class="button button--full" type="submit">
-						<svg class="icon">
-              <use xlink:href="#icon-shopping-bag" />
-            </svg>
-						Check Out
-					</button>
+					<!-- <button class="button button--full" type="submit">
+ -->						<a class="button button--full" th:href="@{payment(id=${order.orderId})}">Check Out</a>
+					<!-- </button> -->
 				</div>
 			</div>
 		</form>

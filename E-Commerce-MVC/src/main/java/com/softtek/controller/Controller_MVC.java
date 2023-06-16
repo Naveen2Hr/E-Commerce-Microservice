@@ -25,6 +25,7 @@ import com.softtek.entity.Address;
 import com.softtek.entity.Customer;
 import com.softtek.entity.Order;
 import com.softtek.entity.OrderedProduct;
+import com.softtek.entity.Payment;
 import com.softtek.entity.Product;
 import com.softtek.model.AccountType;
 import com.softtek.model.ProductCategory;
@@ -255,4 +256,26 @@ public class Controller_MVC {
 		return "authorization_failed";
 	}
 
+	@GetMapping("/payment")
+	public String paymentCheckOut(@RequestParam("id") int id, Model model) {
+		Payment payment = new Payment();
+		payment.setOrderId(id);
+
+		String apiUrl = "http://localHost:9906/payment/save";
+
+		RestTemplate restTemplate = new RestTemplate();
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		HttpEntity<Payment> requeEntity = new HttpEntity<>(payment, headers);
+
+		try {
+			String postForObject = restTemplate.postForObject(apiUrl, requeEntity, String.class);
+			System.out.println(postForObject);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "order";
+	}
 }

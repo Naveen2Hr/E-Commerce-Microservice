@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.softtek.client.OrderClient;
 import com.softtek.entity.Payment;
 import com.softtek.model.Order;
 import com.softtek.repository.PaymentRepository;
@@ -15,7 +16,7 @@ import com.softtek.service.IPaymentService;
  * 
  * @author shreelakshmi.ms
  *
- *@apiNote An Implementation Class that implements IPaymentService providing
+ * @apiNote An Implementation Class that implements IPaymentService providing
  *          implementation for the abstract methods by Overriding.
  */
 
@@ -25,6 +26,9 @@ public class PaymentServiceImpl implements IPaymentService {
 	@Autowired
 	private PaymentRepository paymentRepo;
 
+	@Autowired
+	private OrderClient client;
+
 	/**
 	 * This Method is used to save the Payment Details
 	 * 
@@ -33,6 +37,14 @@ public class PaymentServiceImpl implements IPaymentService {
 	 * 
 	 */
 	public String savePaymentDetails(Payment payment) {
+
+		Order order = client.getOrderRecord(payment.getOrderId()).getBody();
+		payment.setOrderId(order.getOrderId());
+		payment.setPaymentMode("COD");
+		payment.setPaymentStatus(true);
+		payment.setTotalAmount(order.getTotalPrice());
+		payment.setDateAndTime(LocalDateTime.now());
+
 		Payment save = paymentRepo.save(payment);
 		return save != null ? "Saved Succesfully with id : " + payment.getPaymentId() : "Check The payment Object";
 	}
@@ -40,7 +52,7 @@ public class PaymentServiceImpl implements IPaymentService {
 	/**
 	 * This method is used to get payment details as per OrderId
 	 * 
-	 * @return 
+	 * @return
 	 */
 	@Override
 	public Payment getPaymentDetailsByOrderId(long orderId) {
@@ -48,7 +60,7 @@ public class PaymentServiceImpl implements IPaymentService {
 	}
 
 	/**
-	 * This method is used to update the Payment status 
+	 * This method is used to update the Payment status
 	 * 
 	 * @param Payment payment
 	 * @return message of Updated of Payment Status
@@ -59,7 +71,7 @@ public class PaymentServiceImpl implements IPaymentService {
 		return save != null ? "Payment status updated Successfully :: Payment Id :: " + payment.getPaymentId()
 				: "Check The payment Object";
 	}
-	
+
 	/**
 	 * This method is used to get all payment Details
 	 * 
@@ -87,7 +99,7 @@ public class PaymentServiceImpl implements IPaymentService {
 		payment.setPaymentMode("COD");
 		return payment;
 	}
-	
+
 	@Override
 	public String updateOrderStatus(Order order) {
 		return null;
