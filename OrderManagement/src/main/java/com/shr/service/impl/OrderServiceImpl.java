@@ -43,10 +43,13 @@ public class OrderServiceImpl implements OrderServiceInterface {
 		List<Product> prodList = new ArrayList<Product>();
 
 		for (Integer i : productIds) {
+			System.out.println("Product id is ::"+i);
 			prodList.add(productRepo.findById(i).get());
+			
 		}
 
 		for (Product product : prodList) {
+			System.out.println("product price from service :: "+product.getProductPrice());
 			totalPrice += product.getProductPrice();
 		}
 

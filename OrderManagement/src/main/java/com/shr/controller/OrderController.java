@@ -18,6 +18,7 @@ import com.shr.client.IProductServiceRestConsumer;
 import com.shr.entity.Customer;
 import com.shr.entity.Order;
 import com.shr.entity.Product;
+import com.shr.service.IEmailDispactherOrder;
 import com.shr.service.OrderServiceInterface;
 
 import lombok.Getter;
@@ -40,6 +41,9 @@ public class OrderController {
 
 	@Autowired
 	private ICustomerServiceRestConsumer cClient;
+	
+	@Autowired
+	private IEmailDispactherOrder email;
 
 	private Integer custId = 1;
 
@@ -54,6 +58,10 @@ public class OrderController {
 		try {
 			setCustId(custId++);
 			Order insertOrder = service.insertOrder(1, productIds);
+			
+			// send e-mail to customer for confirmation of a order
+			String orderConfirmation = email.orderConfirmation(insertOrder);
+			
 			return new ResponseEntity<Order>(insertOrder, HttpStatus.OK);
 		} catch (Exception e) {
 			String expMessage = "Something went wrong please try again";

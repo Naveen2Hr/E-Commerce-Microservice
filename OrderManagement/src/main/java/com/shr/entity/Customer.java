@@ -24,5 +24,9 @@ public class Customer {
 
 	@Column(length = 20)
 	private String customerName;
+	
+	@Column(length=30)
+	private String customerEmail;
+	
 
 }
