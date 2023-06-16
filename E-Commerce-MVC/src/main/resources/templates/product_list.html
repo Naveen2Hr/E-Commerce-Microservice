@@ -112,7 +112,7 @@ thead th {
 				<td th:text="${product.productPrice}"></td>
 				<td th:text="${product.productDespcription}"></td>
 				<td><a class="btn btn-primary btn-sm"
-					href="add?productId=${product.productId}"><i class="fas fa-add"></i>Add</a>
+					th:href="@{add(id=${product.productId})}"><i class="fas fa-add"></i>Add</a>
 				</td>
 			</tr>
 

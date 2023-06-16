@@ -14,6 +14,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,8 +61,9 @@ public class Controller_MVC {
 	}
 
 	@GetMapping("/add")
-	public String addProductToCart(HttpServletRequest req, Map<String, Object> map) {
-		Integer prodId = Integer.parseInt(req.getParameter("productId"));
+	public String addProductToCart(@RequestParam("id") int id, Model model) {
+		// Integer productId = Integer.parseInt(id);
+		System.out.println(id);
 
 		// creating RestTemplate Instance.
 		RestTemplate restTemplate = new RestTemplate();
@@ -74,7 +76,7 @@ public class Controller_MVC {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		// Creating an Integer HTTPEntity
-		HttpEntity<Integer> requestEntity = new HttpEntity<Integer>(prodId, headers);
+		HttpEntity<Integer> requestEntity = new HttpEntity<Integer>(id, headers);
 
 		// using Rest Template we are hitting the API end points and getting the
 		// Response Entity
@@ -92,7 +94,7 @@ public class Controller_MVC {
 		List<Product> products = response.getBody();
 
 		products.stream().forEach(System.out::println);
-		map.put("proList", products);
+		model.addAttribute("proList", products);
 		return "product_list";
 	}
 
@@ -199,7 +201,6 @@ public class Controller_MVC {
 				});
 
 		List<OrderedProduct> orderedProductList = response.getBody();
-		System.out.println(orderedProductList.get(1).getProductId());
 
 		List<Integer> pIds = new ArrayList<Integer>();
 

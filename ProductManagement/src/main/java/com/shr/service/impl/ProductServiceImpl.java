@@ -81,7 +81,6 @@ public class ProductServiceImpl implements ProductServiceInterface {
 			Product product = productRepo.findById(id).get();
 			productList.add(product);
 		}
-		System.out.println(productList);
 		return productList;
 	}
 
@@ -106,7 +105,7 @@ public class ProductServiceImpl implements ProductServiceInterface {
 	public List<OrderedProduct> getOrderedProductRecords() {
 
 		List<OrderedProduct> list = (List<OrderedProduct>) opRepo.findAll();
-//		opRepo.deleteAll();
+		opRepo.deleteAll();
 		return list;
 	}
 
