@@ -27,8 +27,12 @@ public interface OrderServiceInterface {
 	public String updateOrderDeliveryStatus(Integer orderId, Boolean status);
 
 	public Order orderProvider(Integer orderId);
-	
+
 	public String insertProductRecords(List<Product> productList);
-	
+
 	public String insertCustomerRecord(Customer customer);
+
+	public String insertCustomerList(List<Customer> custList);
+	
+	public String insertProduct(Product product);
 }

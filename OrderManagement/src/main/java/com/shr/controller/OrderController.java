@@ -21,8 +21,7 @@ import com.shr.entity.Product;
 import com.shr.service.IEmailDispactherOrder;
 import com.shr.service.OrderServiceInterface;
 
-import lombok.Getter;
-import lombok.Setter;
+//import ch.qos.logback.core.net.server.Client;
 
 /**
  * 
@@ -41,7 +40,7 @@ public class OrderController {
 
 	@Autowired
 	private ICustomerServiceRestConsumer cClient;
-	
+
 	@Autowired
 	private IEmailDispactherOrder email;
 
@@ -57,11 +56,15 @@ public class OrderController {
 	public ResponseEntity<?> insertOrderRecord(@RequestBody List<Integer> productIds) {
 		try {
 			setCustId(custId++);
-			Order insertOrder = service.insertOrder(1, productIds);
-			
+			List<Customer> customerList = cClient.getCustomerList().getBody();
+			service.insertCustomerList(customerList);
+			Order insertOrder = service.insertOrder(customerList.get(customerList.size() - 1).getCustomerId(),
+					productIds);
+
 			// send e-mail to customer for confirmation of a order
 			String orderConfirmation = email.orderConfirmation(insertOrder);
-			
+			System.out.println("For the Order Confirmation :: " + orderConfirmation);
+
 			return new ResponseEntity<Order>(insertOrder, HttpStatus.OK);
 		} catch (Exception e) {
 			String expMessage = "Something went wrong please try again";
@@ -114,6 +117,18 @@ public class OrderController {
 			Customer customer = cClient.getCustomerDetails(custId).getBody();
 			String message = service.insertCustomerRecord(customer);
 			return new ResponseEntity<String>(message, HttpStatus.OK);
+		} catch (Exception e) {
+			String expMessage = "Something went wrong please try again";
+			e.printStackTrace();
+			return new ResponseEntity<String>(expMessage, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@PostMapping("/insertProduct")
+	public ResponseEntity<?> insertProduct(@RequestBody Product product) {
+		try {
+			String insertProduct = service.insertProduct(product);
+			return new ResponseEntity<String>(insertProduct, HttpStatus.OK);
 		} catch (Exception e) {
 			String expMessage = "Something went wrong please try again";
 			e.printStackTrace();

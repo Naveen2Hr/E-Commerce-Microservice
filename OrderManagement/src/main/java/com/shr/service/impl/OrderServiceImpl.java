@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shr.client.IProductServiceRestConsumer;
 import com.shr.entity.Customer;
 import com.shr.entity.Order;
 import com.shr.entity.Product;
@@ -32,6 +33,9 @@ public class OrderServiceImpl implements OrderServiceInterface {
 	@Autowired
 	private CustomerRepository custRepo;
 
+	@Autowired
+	private IProductServiceRestConsumer pClient;
+
 	/**
 	 * Creating the orders
 	 */
@@ -42,14 +46,19 @@ public class OrderServiceImpl implements OrderServiceInterface {
 		Double totalPrice = 0.0;
 		List<Product> prodList = new ArrayList<Product>();
 
-		for (Integer i : productIds) {
-			System.out.println("Product id is ::"+i);
-			prodList.add(productRepo.findById(i).get());
-			
-		}
+		prodList = pClient.getListOfProduct(productIds).getBody();
+		prodList.forEach(prod -> {
+			productRepo.save(prod);
+		});
+
+//		for (Integer i : productIds) {
+//			System.out.println("Product id is ::" + i);
+//			prodList.add(productRepo.getReferenceById(i));
+//
+//		}
 
 		for (Product product : prodList) {
-			System.out.println("product price from service :: "+product.getProductPrice());
+			System.out.println("product price from service :: " + product.getProductPrice());
 			totalPrice += product.getProductPrice();
 		}
 
@@ -105,6 +114,18 @@ public class OrderServiceImpl implements OrderServiceInterface {
 	public String insertCustomerRecord(Customer customer) {
 		Customer save = custRepo.save(customer);
 		return save != null ? save.getCustomerId() + " :: Customer Record is saved." : "Issue With Record Try Again.";
+	}
+
+	@Override
+	public String insertCustomerList(List<Customer> custList) {
+		List<Customer> saveAll = custRepo.saveAll(custList);
+		return "List Updated";
+	}
+
+	@Override
+	public String insertProduct(Product product) {
+		Product save = productRepo.save(product);
+		return save != null ? "product Inserted" : "Something gone wrong";
 	}
 
 }

@@ -61,7 +61,7 @@ public class EmailDispatcherImpl implements IEmailDispatcher {
 		messageHelper.setCc("hrnaveensagar1712@gmail.com");
 
 		// Setting the Subject Of the Email
-		messageHelper.setSubject("Asset Assigned Information");
+		messageHelper.setSubject("Customer Regidtration Information");
 
 		// Setting the sent-date of the message
 		messageHelper.setSentDate(new Date());
